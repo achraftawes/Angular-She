@@ -31,7 +31,7 @@ import { EditShippingAddressPageComponent } from './components/pages/edit-shippi
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 
 const routes: Routes = [
-    {path: '', component: HomePageComponent},
+    {path: '', component: HomePageComponent, pathMatch: 'full'},
     {path: 'about', component: AboutPagComponent},
     {path: 'instructor', component: InstructorsPageComponent},
     {path: 'single-instructor', component: InstructorsDetailsPageComponent},
@@ -47,7 +47,7 @@ const routes: Routes = [
     {path: 'coming-soon', component: ComingSoonPageComponent},
     {path: 'courses-category', component: CategoryPageComponent},
     {path: 'courses-grid', component: CoursesGridPageComponent}, // to keep
-    {path: 'single-courses', component: CoursesDetailsPageComponent},
+    {path: 'single-courses/:id-training', component: CoursesDetailsPageComponent},
     {path: 'my-dashboard', component: MyDashboardPageComponent},
     {path: 'downloads', component: DownloadsPageComponent},
     {path: 'edit-address', component: EditAddressPageComponent},

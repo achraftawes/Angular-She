@@ -5,8 +5,8 @@
         <div class="page-title-content">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="courses-2-columns-style-1.html">Courses</a></li>
-                <li>Certified Graphic Design with Free Project Course</li>
+                <li><a href="courses-grid">Courses</a></li>
+                <li>{{ training?.title }}</li>
             </ul>
             <h2>Courses</h2>
         </div>
@@ -20,7 +20,7 @@
                 <div class="col-lg-8">
                     <div class="courses-title">
                         <h2>
-                            Certified Graphic Design with Free Project Course
+                            {{ training?.title }}
                         </h2>
                         <p>
                             Lorem Ipsum is simply dummy text of the printing and
@@ -33,17 +33,17 @@
                             <li>
                                 <i class="bx bx-folder-open"></i>
                                 <span>Category</span>
-                                <a routerLink="/single-courses">Design</a>
+                                <a>Design</a>
                             </li>
                             <li>
                                 <i class="bx bx-group"></i>
                                 <span>Students Enrolled</span>
-                                <a routerLink="/single-courses">813,454</a>
+                                <a>813,454</a>
                             </li>
                             <li>
                                 <i class="bx bx-calendar"></i>
-                                <span>Last Updated</span>
-                                <a routerLink="/single-courses">01/14/2019</a>
+                                <span>Start Date</span>
+                                <a>{{ training?.startDate }}</a>
                             </li>
                         </ul>
                     </div>
@@ -62,10 +62,10 @@
                                 >(2 reviews)</span
                             >
                         </div>
-                        <div class="price">$250</div>
+                        <div class="price">Free</div>
                         <a routerLink="/single-courses" class="default-btn"
                             ><i class="bx bx-paper-plane icon-arrow before"></i
-                            ><span class="label">Buy Course</span
+                            ><span class="label">Enroll</span
                             ><i class="bx bx-paper-plane icon-arrow after"></i
                         ></a>
                     </div>
@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="courses-details-image text-center">
-                    <img src="assets/img/courses/courses2.jpg" alt="image" />
+                    <img src="{{ training?.imgTraining }}" alt="image" />
                 </div>
                 <div class="courses-details-desc">
                     <h3>What you'll learn</h3>
@@ -309,7 +309,7 @@
                         <div class="author-profile">
                             <div class="author-profile-title">
                                 <img
-                                    src="assets/img/user1.jpg"
+                                    src="{{ training?.former.picture }}"
                                     class="shadow-sm rounded-circle"
                                     alt="image"
                                 />
@@ -317,7 +317,13 @@
                                     class="author-profile-title-details d-flex justify-content-between"
                                 >
                                     <div class="author-profile-details">
-                                        <h4>James Anderson</h4>
+                                        <h4>
+                                            {{
+                                                training?.former.firstName +
+                                                    " " +
+                                                    training?.former.lastName
+                                            }}
+                                        </h4>
                                         <span class="d-block"
                                             >Photographer, Author, Teacher</span
                                         >
@@ -611,87 +617,41 @@
                 </div>
                 <div class="courses-sidebar-syllabus">
                     <h3>Course Syllabus</h3>
-                    <span class="chapter">Chapter 1</span>
-                    <h4>Lessons</h4>
-                    <div class="courses-list">
-                        <ul>
-                            <li>Introduction</li>
-                            <li>
-                                <a routerLink="/single-courses">
-                                    <span class="number">1.</span> Secret 1:
-                                    Sell The Problem, Not The Solution (14:37)
-                                    <span class="free-lesson">Free</span>
-                                </a>
-                            </li>
-                            <li>
-                                Quiz - Secret 1: Sell The Problem, Not The
-                                Solution
-                            </li>
-                            <li>
-                                <span class="number">2.</span> Secret 2: Think
-                                Like a Magazine, Not a Salesman (4:30)
-                            </li>
-                            <li>
-                                Quiz - Secret 2: Think Like a Magazine, Not a
-                                Salesman
-                            </li>
-                            <li>
-                                <span class="number">3.</span> Secret 3: Content
-                                Is King, but Consistency Is Queen (3:56)
-                            </li>
-                            <li>
-                                Quiz - Secret 3: Content Is King, but
-                                Consistency Is Queen
-                            </li>
-                            <li>
-                                <span class="number">4.</span> Secret 4: Punch
-                                Above Your Weight Class (11:00)
-                            </li>
-                            <li>
-                                <span class="number">5.</span> Secret 5:
-                                Ethically Steal Your Competitors' Customers
-                                (8:12)
-                            </li>
-                            <li>
-                                <span class="number">6.</span> Secret 6: Bulid
-                                an Audience By Borrowing (10:25)
-                            </li>
-                            <li>
-                                Quiz - Secret 6: Bulid an Audience By Borrowing
-                            </li>
-                            <li>
-                                <span class="number">7.</span> Secret 7: Be a
-                                Shadow, Not a Ghost (5:19)
-                            </li>
-                            <li>
-                                <span class="number">8.</span> Bonus: Tips to Be
-                                a 5 Stars Freelancer (16:07)
-                            </li>
-                            <li>
-                                <span class="number">9.</span> Closing Thoughts
-                                (3:15)
-                            </li>
-                            <li>Quiz - Secret 7: Be a Shadow, Not a Ghost</li>
-                        </ul>
-                    </div>
-                    <span class="chapter">Chapter 2</span>
-                    <h4>Final Quiz</h4>
-                    <div class="courses-list">
-                        <ul>
-                            <li>Final Quiz</li>
-                        </ul>
+                    <div
+                        *ngFor="
+                            let section of training?.sections;
+                            let x = index
+                        "
+                    >
+                        <span class="chapter">{{ "Chapter " + (x + 1) }}</span>
+                        <h4>Lessons</h4>
+                        <div class="courses-list">
+                            <ul>
+                                <li>{{ section.title }}</li>
+                                <li
+                                    *ngFor="
+                                        let lesson of section.lession;
+                                        let y = index
+                                    "
+                                >
+                                    <a>
+                                        <span class="number">{{ y + 1 }}.</span>
+                                        {{ lesson.title }}
+                                        <span class="free-lesson">Free</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <h4>Quiz</h4>
+                                    {{ section.quiz.name }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="courses-purchase-info">
-                    <h4>
-                        Interested in this course for your Business or Team?
-                    </h4>
-                    <p>
-                        Train your employees in the most in-demand topics, with
-                        edX for Business.
-                    </p>
+                    <h4>Interested in this course?</h4>
                     <a routerLink="/single-courses" class="d-inline-block"
-                        >Purchase now</a
+                        >Enroll now</a
                     >
                     <a routerLink="/single-courses" class="d-inline-block"
                         >Request Information</a

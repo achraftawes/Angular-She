@@ -157,7 +157,7 @@ img {
     }
     .default-btn {
         color: var(--whiteColor);
-        
+
         &:hover, &:focus {
             color: var(--whiteColor);
         }
@@ -422,7 +422,7 @@ textarea.form-control {
             }
         }
         &:hover, &:focus {
-            .owl-nav {    
+            .owl-nav {
                 [class*=owl-] {
                     left: -70px;
                     opacity: 1;
@@ -492,7 +492,7 @@ textarea.form-control {
             }
         }
         &:hover, &:focus {
-            .owl-nav {    
+            .owl-nav {
                 [class*=owl-] {
                     left: -70px;
                     opacity: 1;
@@ -582,7 +582,7 @@ textarea.form-control {
             }
         }
         &:hover, &:focus {
-            .owl-nav {    
+            .owl-nav {
                 [class*=owl-] {
                     left: -70px;
                     opacity: 1;
@@ -658,7 +658,7 @@ textarea.form-control {
             }
         }
         &:hover, &:focus {
-            .owl-nav {    
+            .owl-nav {
                 [class*=owl-] {
                     left: 70px;
 
@@ -721,7 +721,7 @@ textarea.form-control {
             }
         }
         &:hover, &:focus {
-            .owl-nav {    
+            .owl-nav {
                 [class*=owl-] {
                     left: -70px;
                     opacity: 1;
@@ -977,25 +977,25 @@ textarea.form-control {
 @keyframes border-transform {
     0%,100% {
         border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
-    } 
+    }
 	14% {
         border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
-    } 
+    }
 	28% {
         border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
-    } 
+    }
 	42% {
         border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
-    } 
+    }
 	56% {
         border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
-    } 
+    }
 	70% {
         border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
-    } 
+    }
 	84% {
         border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
-    } 
+    }
 }
 @keyframes ripple {
     0% {
@@ -1012,43 +1012,43 @@ textarea.form-control {
 }
 @keyframes movebounce {
     0% {
-        transform: translateY(0px); 
+        transform: translateY(0px);
     }
     50% {
-        transform: translateY(20px); 
+        transform: translateY(20px);
     }
     100% {
-        transform: translateY(0px); 
-    } 
+        transform: translateY(0px);
+    }
 }
 @keyframes movebounce2 {
     0% {
-        transform: translateY(0px); 
+        transform: translateY(0px);
     }
     50% {
-        transform: translateY(-20px); 
+        transform: translateY(-20px);
     }
     100% {
-        transform: translateY(0px); 
-    } 
+        transform: translateY(0px);
+    }
 }
 @keyframes movebounce3 {
     0% {
-        transform: translateX(0px); 
+        transform: translateX(0px);
     }
     50% {
-        transform: translateX(20px); 
+        transform: translateX(20px);
     }
     100% {
-        transform: translateX(0px); 
-    } 
+        transform: translateX(0px);
+    }
 }
 
 /*extra-css*/
 .courses-categories-area {
     position: relative;
     z-index: 1;
-    
+
     &.bg-image {
         background-image: url(assets/img/pattern.jpg);
     }
@@ -1325,7 +1325,7 @@ textarea.form-control {
 .partner-area {
     &.bg-color {
         background-color: var(--mainColor);
-    
+
         .section-title {
             h2 {
                 color: var(--whiteColor);
@@ -1557,7 +1557,7 @@ textarea.form-control {
             display: block;
             border: none;
             padding: 0;
-    
+
             &:hover {
                 color: var(--mainColor);
             }
@@ -1694,7 +1694,7 @@ textarea.form-control {
             display: inline-block;
             line-height: initial;
             margin-right: 10px;
-            
+
             span {
                 position: relative;
                 display: inline-block;
@@ -1731,7 +1731,7 @@ textarea.form-control {
     .tabs-container {
         border: 1px dashed #eeeeee;
         padding: 30px;
-        
+
         .products-details-tab-content {
             p {
                 margin-bottom: 20px;
@@ -1746,7 +1746,7 @@ textarea.form-control {
                 margin-bottom: 0;
                 list-style-type: none;
                 text-align: start;
-    
+
                 li {
                     border: 1px solid #eeeeee;
                     border-bottom: none;
@@ -1805,7 +1805,7 @@ textarea.form-control {
                 }
                 .review-comments {
                     margin-top: 35px;
-                    
+
                     .review-item {
                         margin-top: 30px;
                         position: relative;
@@ -2026,7 +2026,7 @@ textarea.form-control {
 .gym-home-slides {
     .owl-theme {
         margin-bottom: -2px;
-        
+
         .owl-dots {
             left: 0;
             right: 0;
@@ -2161,6 +2161,11 @@ textarea.form-control {
             image: url(assets/img/page-title/page-title1.jpg);
         };
     }
+    &.training-bg {
+        background: {
+            image: url(assets/img/page-title/training.jpeg);
+        };
+    }
     &.item-bg2 {
         background: {
             image: url(assets/img/page-title/page-title2.jpg);
@@ -2273,7 +2278,7 @@ textarea.form-control {
     .widget_search {
         form {
             position: relative;
-            
+
             .screen-reader-text {
                 display: none;
             }
@@ -2328,7 +2333,7 @@ textarea.form-control {
     .widget_ednuv_posts_thumb {
         position: relative;
         overflow: hidden;
-        
+
         .item {
             overflow: hidden;
             margin-bottom: 15px;
@@ -3499,7 +3504,7 @@ blockquote, .blockquote {
     .products-details-tab {
         .tabs-container {
             padding: 20px;
-            
+
             .products-details-tab-content {
                 .additional-information {
                     li {
@@ -3551,7 +3556,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .feedback-slides {
         .owl-theme {
             margin-bottom: 0;
@@ -3628,7 +3633,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .blog-slides {
         .owl-theme {
             .owl-nav {
@@ -3737,11 +3742,11 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .feedback-form-area {
         margin-top: -10px;
     }
-    
+
     .divider {
         bottom: -1px;
     }
@@ -3785,7 +3790,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .courses-topbar {
         text-align: center;
 
@@ -3954,7 +3959,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .feedback-slides-two {
         .owl-theme {
             .owl-nav.disabled + .owl-dots {
@@ -4127,7 +4132,7 @@ blockquote, .blockquote {
             }
         }
     }
-	
+
     .courses-categories-slides {
         .owl-theme {
             .owl-nav {
@@ -4272,7 +4277,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .home-slides {
         .owl-theme {
             .owl-nav {
@@ -4285,7 +4290,7 @@ blockquote, .blockquote {
             }
         }
     }
-    
+
     .widget-area {
         margin-top: 40px;
     }
@@ -4404,7 +4409,7 @@ blockquote, .blockquote {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    
+
     .courses-categories-slides {
         .owl-theme {
             .owl-nav {
@@ -4732,7 +4737,7 @@ blockquote, .blockquote {
     .health-coaching-shape9 {
         right: 12%;
         top: 25%;
-    
+
         img {
             max-width: 100%;
         }
@@ -4758,7 +4763,7 @@ blockquote, .blockquote {
     }
     .lang-shape5 {
         left: 3%;
-    
+
         img {
             max-width: 100%;
         }
@@ -4769,7 +4774,7 @@ blockquote, .blockquote {
             .owl-nav {
                 [class*=owl-] {
                     left: 70px;
-    
+
                     &.owl-next {
                         left: auto;
                         right: 70px;
