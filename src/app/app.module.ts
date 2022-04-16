@@ -10,9 +10,15 @@ import { LightboxModule } from 'ngx-lightbox';
 import { FormsModule } from '@angular/forms';
 import { AccordionModule } from "ngx-accordion";
 import { LightgalleryModule } from 'lightgallery/angular';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import { SecurityContext } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from 'src/environments/environment';
+import { BaseUrlInterceptor } from './config/config.service';
+
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { FunfactsComponent } from './components/common/funfacts/funfacts.component';
@@ -69,8 +75,7 @@ import { WhyChooseUsComponent } from './components/common/why-choose-us/why-choo
 import { HomeMainBannerComponent } from './components/pages/home-page/home-main-banner/home-main-banner.component';
 import { LanguageCategoryComponent } from './components/common/language-category/language-category.component';
 import { FreeTrialFormComponent } from './components/common/free-trial-form/free-trial-form.component';
-import { environment } from 'src/environments/environment';
-import { BaseUrlInterceptor } from './config/config.service';
+import { CourseCreationPageComponent } from './components/pages/course-creation/courses-creation-page.component';
 
 @NgModule({
   declarations: [
@@ -130,8 +135,27 @@ import { BaseUrlInterceptor } from './config/config.service';
     HomeMainBannerComponent,
     LanguageCategoryComponent,
     FreeTrialFormComponent,
+    CourseCreationPageComponent
   ],
   imports: [
+    MarkdownModule.forChild(),
+    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({ loader: HttpClient }),
+    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
+    MarkdownModule.forRoot({
+      loader: HttpClient,
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+          smartLists: true,
+          smartypants: false,
+        },
+      },
+    }),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -144,7 +168,8 @@ import { BaseUrlInterceptor } from './config/config.service';
     LightboxModule,
     FormsModule,
     AccordionModule,
-    LightgalleryModule
+    LightgalleryModule,
+    LMarkdownEditorModule
   ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },

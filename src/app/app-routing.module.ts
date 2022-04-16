@@ -29,6 +29,7 @@ import { EditAccountPageComponent } from './components/pages/edit-account-page/e
 import { EditBillingAddressPageComponent } from './components/pages/edit-billing-address-page/edit-billing-address-page.component';
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { CourseCreationPageComponent } from './components/pages/course-creation/courses-creation-page.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent, pathMatch: 'full'},
@@ -46,8 +47,9 @@ const routes: Routes = [
     {path: 'error-404', component: ErrorPageComponent},
     {path: 'coming-soon', component: ComingSoonPageComponent},
     {path: 'courses-category', component: CategoryPageComponent},
-    {path: 'courses-grid', component: CoursesGridPageComponent}, // to keep
-    {path: 'single-courses/:id-training', component: CoursesDetailsPageComponent},
+    {path: 'courses-grid', component: CoursesGridPageComponent},
+    { path: 'single-courses/:id-training', component: CoursesDetailsPageComponent },
+    { path: 'create-course', component: CourseCreationPageComponent },
     {path: 'my-dashboard', component: MyDashboardPageComponent},
     {path: 'downloads', component: DownloadsPageComponent},
     {path: 'edit-address', component: EditAddressPageComponent},
