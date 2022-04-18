@@ -66,7 +66,12 @@
                                 training.idTraining
                             ]"
                             class="d-block"
-                            ><img src="{{ training.imgTraining }}" alt="image"
+                            ><img
+                                src="{{
+                                    'http://localhost:8086/SheApp/attachment/get/' +
+                                        training.imgTraining.id
+                                }}"
+                                alt="image"
                         /></a>
                         <div class="courses-tag">
                             <a
@@ -75,7 +80,7 @@
                                     training.idTraining
                                 ]"
                                 class="d-block"
-                                >Business</a
+                                >Entertainment</a
                             >
                         </div>
                     </div>

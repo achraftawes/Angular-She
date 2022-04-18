@@ -7,13 +7,13 @@ import { TabsModule } from 'ngx-tabset';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { StickyNavModule } from 'ng2-sticky-nav';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from "ngx-accordion";
 import { LightgalleryModule } from 'lightgallery/angular';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-import { SecurityContext } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
@@ -31,6 +31,9 @@ import { StudentsFeedbackFormComponent } from './components/common/students-feed
 import { PartnerStyleTwoComponent } from './components/common/partner-style-two/partner-style-two.component';
 import { FeedbackFormComponent } from './components/common/feedback-form/feedback-form.component';
 import { FeedbackStyleTwoComponent } from './components/common/feedback-style-two/feedback-style-two.component';
+import { AddDescriptionComponent } from './components/common/add-description/add-description.component';
+import { AddSectionComponent } from './components/common/add-section/add-section.component';
+import { AddLessonComponent } from './components/common/add-lesson/add-lesson.component';
 import { AboutPagComponent } from './components/pages/about-page/about-page.component';
 import { OurStoryComponent } from './components/common/our-story/our-story.component';
 import { OurValuesComponent } from './components/common/our-values/our-values.component';
@@ -82,6 +85,9 @@ import { CourseCreationPageComponent } from './components/pages/course-creation/
     AppComponent,
     FooterComponent,
     FunfactsComponent,
+    AddDescriptionComponent,
+    AddSectionComponent,
+    AddLessonComponent,
     PartnerStyleOneComponent,
     InstructorsStyleOneComponent,
     BecomeInstructorPartnerComponent,
@@ -138,11 +144,6 @@ import { CourseCreationPageComponent } from './components/pages/course-creation/
     CourseCreationPageComponent
   ],
   imports: [
-    MarkdownModule.forChild(),
-    MarkdownModule.forRoot(),
-    MarkdownModule.forRoot({ loader: HttpClient }),
-    MarkdownModule.forRoot(),
-    MarkdownModule.forRoot({ sanitize: SecurityContext.NONE }),
     MarkdownModule.forRoot({
       loader: HttpClient,
       markedOptions: {
@@ -156,6 +157,7 @@ import { CourseCreationPageComponent } from './components/pages/course-creation/
         },
       },
     }),
+    NgbModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -166,6 +168,7 @@ import { CourseCreationPageComponent } from './components/pages/course-creation/
     NgxScrollTopModule,
     StickyNavModule,
     LightboxModule,
+    ReactiveFormsModule,
     FormsModule,
     AccordionModule,
     LightgalleryModule,
@@ -177,4 +180,4 @@ import { CourseCreationPageComponent } from './components/pages/course-creation/
 ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

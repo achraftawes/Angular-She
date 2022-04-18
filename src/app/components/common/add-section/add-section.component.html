@@ -1,0 +1,142 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel [title]="'Section ' + (index + 1)">
+        <ng-template ngbPanelContent>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">Section title</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Section title..."
+                    name="section-title"
+                    [(ngModel)]="title"
+                    (change)="emitUpdated()"
+                />
+            </div>
+            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                <ngb-panel title="Quiz">
+                    <ng-template ngbPanelContent>
+                        <div class="form-group mb-3">
+                            <label for="formGroupExampleInput"
+                                >Quiz question</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Quiz question..."
+                                name="quiz-question"
+                                [(ngModel)]="quizQuestion"
+                                (change)="emitUpdated()"
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formGroupExampleInput"
+                                >Answer choice A</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Answer choice A..."
+                                name="choiceA"
+                                [(ngModel)]="choiceA"
+                                (change)="emitUpdated()"
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formGroupExampleInput"
+                                >Answer choice B</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Answer choice B..."
+                                name="choiceB"
+                                [(ngModel)]="choiceB"
+                                (change)="emitUpdated()"
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formGroupExampleInput"
+                                >Answer choice C</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Answer choice C..."
+                                name="choiceC"
+                                [(ngModel)]="choiceC"
+                                (change)="emitUpdated()"
+                            />
+                        </div>
+
+                        <label for="correctAnswer"
+                            >Which one is the correct answer?</label
+                        >
+                        <div
+                            class="btn-group-vertical mr-5"
+                            role="group"
+                            id="correctAnswer"
+                            aria-label="Radio Buttons with Bootstrap 5"
+                        >
+                            <input
+                                type="radio"
+                                value="0"
+                                class="btn-check"
+                                id="btnradio1"
+                                name="correctAnswer"
+                                autocomplete="off"
+                                (change)="correctAnswerChange($event)"
+                            />
+                            <label
+                                class="btn btn-outline-success"
+                                for="btnradio1"
+                                >Choice A</label
+                            >
+
+                            <input
+                                type="radio"
+                                value="1"
+                                class="btn-check"
+                                id="btnradio2"
+                                name="correctAnswer"
+                                autocomplete="off"
+                                (change)="correctAnswerChange($event)"
+                            />
+                            <label
+                                class="btn btn-outline-success"
+                                for="btnradio2"
+                                >Choice B</label
+                            >
+                            <input
+                                type="radio"
+                                value="2"
+                                name="correctAnswer"
+                                class="btn-check"
+                                id="btnradio3"
+                                autocomplete="off"
+                                (change)="correctAnswerChange($event)"
+                            />
+                            <label
+                                class="btn btn-outline-success"
+                                for="btnradio3"
+                                >Choice C</label
+                            >
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+            <button
+                type="button"
+                class="btn btn-primary mb-3 mt-3"
+                (click)="addLesson()"
+            >
+                Add Lesson
+            </button>
+            <app-add-lesson
+                *ngFor="let number of numbers"
+                [index]="number"
+                [(lesson)]="lessons[number]"
+                (change)="emitUpdated()"
+            ></app-add-lesson>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

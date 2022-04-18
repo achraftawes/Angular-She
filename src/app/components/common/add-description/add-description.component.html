@@ -1,0 +1,12 @@
+<md-editor
+    name="Content"
+    [height]="'200px'"
+    [options]="options"
+    required
+    [(ngModel)]="content"
+    name="content"
+    (change)="onChange()"
+    (paste)="onChange()"
+    maxlength="15000"
+>
+</md-editor>
