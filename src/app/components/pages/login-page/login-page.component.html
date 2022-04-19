@@ -13,22 +13,20 @@
                             <div class="logo">
                                 <a routerLink="/"><img src="assets/img/black-logo.png" alt="image"></a>
                             </div>
-                            <h3>Welcome back</h3>
-                            <p>New to Ednuv? <a routerLink="/register">Sign up</a></p>
-                            <form>
+                            <p>New to SheForShe ? <a routerLink="/register">Sign up</a></p>
+                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group">
-                                    <input type="email" placeholder="Your email address" class="form-control">
+                                    <input type="text" placeholder="Your username" class="form-control" id="userName" formControlName="userName">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" placeholder="Your password" class="form-control">
+                                    <input type="password" placeholder="Your password" class="form-control" id="password" formControlName="password">
                                 </div>
                                 <button type="submit">Login</button>
+                                <div class="alert alert-warning" *ngIf="submitted && isLoginFailed">
+                                    Login failed- {{ errorMessage }}
+                                  </div>
                                 <div class="forgot-password">
                                     <a routerLink="/">Forgot Password?</a>
-                                </div>
-                                <div class="connect-with-social">
-                                    <button type="submit" class="facebook"><i class='bx bxl-facebook'></i> Connect with Facebook</button>
-                                    <button type="submit" class="twitter"><i class='bx bxl-twitter'></i> Connect with Twitter</button>
                                 </div>
                             </form>
                         </div>

@@ -1,0 +1,3 @@
+export enum RoleName {
+    FORMER, WOMAN, JOB_PROPOSER, EXPERT, DONATOR, ADMINISTRATOR
+}
