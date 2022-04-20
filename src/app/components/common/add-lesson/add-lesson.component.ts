@@ -18,7 +18,7 @@ export class AddLessonComponent {
     public video;
     private file: File;
 
-    async onFileSelected(event) {
+    async onFileSelected(event) { //upload du fichier directement qu la selection se fait 
         this.file = event.target.files[0];
         this.video = await this.attachmentService.uploadFile(this.file);
         this.emitUpdated();

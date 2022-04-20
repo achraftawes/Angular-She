@@ -32,6 +32,7 @@
     "ngx-markdown": "^13.1.0",
     "ngx-markdown-editor": "^4.0.0",
     "ngx-owl-carousel-o": "^7.0.1",
+    "ngx-pipes": "^3.0.0",
     "ngx-scrolltop": "^2.3.1",
     "ngx-tabset": "^2.2.0",
     "rxjs": "~6.5.4",

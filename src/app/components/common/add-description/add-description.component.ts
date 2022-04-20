@@ -11,11 +11,12 @@ interface UploadResult {
     templateUrl: "./add-description.component.html",
     styleUrls: ["./add-description.component.scss"],
 })
+// c'est le fils 
 export class AddDescriptionComponent implements OnInit {
     public options;
 
     public content;
-    @Output() contentChange = new EventEmitter<string>();
+    @Output() contentChange = new EventEmitter<string>(); //  dans md  le contenue du text dans description change 
 
     constructor() {
         this.options = {

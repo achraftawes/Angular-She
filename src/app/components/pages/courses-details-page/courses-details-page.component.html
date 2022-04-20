@@ -40,8 +40,8 @@
                             </li>
                             <li>
                                 <i class="bx bx-calendar"></i>
-                                <span>Last Updated</span>
-                                <a>01/14/2019</a>
+                                <span>Start Date</span>
+                                <a>{{training?.startDate}}</a>
                             </li>
                         </ul>
                     </div>
@@ -149,15 +149,20 @@
                                 </div>
                             </div>
                             <p>
-                                James Anderson is a celebrated photographer,
-                                author, and teacher who brings passion to
+                                {{
+                                    training?.former.firstName +
+                                        " " +
+                                        training?.former.lastName
+                                }}  is a celebrated former 
+                                 and teacher who brings passion to
                                 everything he does.
                             </p>
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry. Lorem Ipsum has been
-                                the industry's standard dummy text ever since
-                                the 1500s.
+                                {{ training?.title }} programs provide a host of benefits.
+                                 They enhance employee performance, boost employee productivity, 
+                                 reduce employee turnover, and improve company culture. 
+                                Explore the importance of training and development programs for
+                                 employees and employers by pursuing a career in human resources.
                             </p>
                         </div>
                     </div>

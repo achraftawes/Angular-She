@@ -18,7 +18,7 @@ export class BaseUrlInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         // This is mandatory to create a new training
         const token =
-            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhaGFtZGkiLCJleHAiOjE2NTAyNTI3MDYsImlhdCI6MTY1MDIzNDcwNn0.9kg62BH3d8GXaQSP4dOazsbqVI8IzryqTNcZfZkO8I8IfJdIXi8Xm4RuFcsHqFfzqSzxggiFYEF7-6FqV3cV0g";
+            "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhaGFtZGkiLCJleHAiOjE2NTAzODA4NzMsImlhdCI6MTY1MDM2Mjg3M30.wjzLR7c_hVRR0bA6av5XeQzCfqziXXBig3I_wfgwYMyiFHfZeMprlXzLHctQllZQFQoB8gAjPPNl2HcdovC3EQ";
         const headers = new HttpHeaders().set(
             "Authorization",
             "Bearer " + token

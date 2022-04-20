@@ -5042,6 +5042,13 @@ ngx-owl-carousel-o@^7.0.1:
   dependencies:
     tslib "^2.3.0"
 
+ngx-pipes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-pipes/-/ngx-pipes-3.0.0.tgz#cf8c8b06a565d0a23abfedf2cb2c445b4bae7c74"
+  integrity sha512-JK1E/QqVceCkEBoRQoZriR5GZEDd5aTC/+Zv9UlUbIRAzeSfA18n8XYJKLM3rpy8Y4uGBU1pAp0pvvdJiK/XDA==
+  dependencies:
+    tslib "^2.3.0"
+
 ngx-scrolltop@^2.3.1:
   version "2.4.0"
   resolved "https://registry.npmjs.org/ngx-scrolltop/-/ngx-scrolltop-2.4.0.tgz"

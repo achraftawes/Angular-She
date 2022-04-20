@@ -28,23 +28,24 @@ export class CourseCreationPageComponent {
     ) {}
 
     onFileSelected(event) {
-        this.file = event.target.files[0];
+        this.file = event.target.files[0]; //un seul fichier à selectionner 
     }
     addSection() {
-        this.sections.push({} as ISection);
-        const nextIndex = this.numbers.length + 1;
-        this.numbers = Array(nextIndex)
+        this.sections.push({} as ISection); // on a préparé {} un espace vide pour la nouvelle section 
+        const nextIndex = this.numbers.length + 1; 
+        this.numbers = Array(nextIndex) // liste de section chaque section contient ses propres données
             .fill(0)
             .map((_, i) => i);
     }
 
     onTrainingDescriptionChange(content) {
-        this.trainingDescription = content;
+        this.trainingDescription = content;// ici  le pére reçoit le  changement 
+        //le pére prend changement et le met dans description training
     }
     async submit() {
         try {
             const imgTraining = await this.attachmentService.uploadFile(
-                this.file
+                this.file //idAttachement dans la base de données
             );
             const training = {
                 title: this.trainingTitle,

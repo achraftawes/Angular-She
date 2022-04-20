@@ -50,7 +50,7 @@
         <app-add-section
             *ngFor="let number of numbers"
             [index]="number"
-            [(section)]="sections[number]"
+            [(section)]="sections[number]" 
         ></app-add-section>
         <button type="button" class="btn btn-primary mb-3" (click)="submit()">
             Submit

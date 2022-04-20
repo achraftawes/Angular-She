@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <ng-template [ngIf]="courseId !== -1" [ngIfElse]="elseBlockTitle"
+            >Course created successfully</ng-template
+        >
+        <ng-template #elseBlockTitle>Error occurred</ng-template>
+    </h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross')"
+    ></button>
+</div>
+<div class="modal-footer">
+    <ng-template [ngIf]="courseId !== -1"
+        ><button
+            type="button"
+            class="btn btn-success"
+            (click)="activeModal.close('Details')"
+        >
+            View created training
+        </button>
+    </ng-template>
+    <button
+        type="button"
+        class="btn btn-outline-info"
+        (click)="activeModal.close('Close')"
+    >
+        Close
+    </button>
+</div>

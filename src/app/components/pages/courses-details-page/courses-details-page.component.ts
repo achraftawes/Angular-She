@@ -25,12 +25,12 @@ export class CoursesDetailsPageComponent implements OnInit {
     async ngOnInit(): Promise<void> {
         const idTraining = await this.route.params
             .pipe(
-                filter((params) => !!params["id-training"]),
+                filter((params) => !!params["id-training"]), // filtrer les valeurs où idTraining null
                 map((params) => params["id-training"]),
                 take(1)
             )
             .toPromise();
-        if (!idTraining) this.router.navigate(["courses-grid"]);
+        if (!idTraining) this.router.navigate(["courses-grid"]); // navigation to course grid
         const training = (await this.trainingService.listTrainings()).find(
             ({ idTraining: trainingId }) => trainingId === +idTraining
         );
@@ -41,13 +41,13 @@ export class CoursesDetailsPageComponent implements OnInit {
     onSelectLesson(lessonId) {
         this.selectedLesson =
             this.training.sections
-                .reduce((acc, { lesson }) => {
-                    acc.push(...lesson);
-                    return acc;
+                .reduce((acc, { lesson }) => { //loop on la single lesson 
+                    acc.push(...lesson); //accumulateur
+                    return acc; //accumulation des leçons de chaque section 
                 }, [])
-                .find(({ idLesson }) => idLesson === lessonId) || null;
-        console.log("this.selectedLesson", this.selectedLesson);
-        this.reload();
+                .find(({ idLesson }) => idLesson === lessonId) || null; // recherche par id
+        console.log("this.selectedLesson", this.selectedLesson);// retourne le leçon choisi
+        this.reload(); //render the page
     }
 
     private reload() {
