@@ -1,0 +1,35 @@
+<app-header-style></app-header-style>
+<div class="my-dashboard-area ptb-100">
+    <div class="container w-75" align="center">
+                <h1>Get Appointement</h1>
+
+         <form [formGroup]="form_appointement">
+           <div align="left">
+             <label>Date Appointement</label>
+           </div>
+
+        <input formControlName="dateAppointement" [(ngModel)]="takeA.dateAppointement" id="dateAppointement" name="dateAppointement" type="date" class="form-control">
+        <br>
+         <div align="left">
+             <label>Observation</label>
+           </div>
+        <input formControlName="observation" [(ngModel)]="takeA.observation" placeholder="Fill This Field" id="observation" name="observation" type="text" class="form-control">
+        <br>
+         <div align="left">
+             <label>Status</label>
+           </div>
+             <select selected="Etat" name="etat" id="etat" class="form-control" formControlName="etat" [(ngModel)]="takeA.etat">
+                 <option disabled value="Etat">Select Status</option>
+                 <option value="True">Yes</option>
+                 <option value="False">No</option>
+             </select>
+        <br>
+        <div align="right">
+            <button (click)="onConfirmAppointment()" class="btn btn-success">Take now</button>
+        </div>
+
+    </form>
+    </div>
+
+</div>
+

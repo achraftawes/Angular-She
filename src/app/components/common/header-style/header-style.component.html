@@ -83,16 +83,36 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a
-                                routerLink="/events"
-                                class="nav-link"
-                                routerLinkActive="active"
-                                [routerLinkActiveOptions]="{
-                                    exact: true
-                                }"
-                                >Events</a
-                            >
-                        </li>
+                            <a href="javascript:void(0)" class="nav-link"
+                                >Events <i class="bx bx-chevron-down"></i
+                            ></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/events"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                        >Events List
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/events-creation"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                        >Create Event</a
+                                    >
+                                </li>
+
+                            </ul>
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link"
                                 >Courses <i class="bx bx-chevron-down"></i

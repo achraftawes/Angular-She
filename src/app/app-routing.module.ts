@@ -29,6 +29,11 @@ import { EditAccountPageComponent } from './components/pages/edit-account-page/e
 import { EditBillingAddressPageComponent } from './components/pages/edit-billing-address-page/edit-billing-address-page.component';
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { EventsCreationComponent } from './components/pages/events-creation/events-creation.component';
+
+import { AppointementsComponent } from './components/pages/appointements/appointements.component';
+import { TakeappointementComponent } from './components/pages/takeappointement/takeappointement.component';
+import { EditAppointementComponent } from './components/pages/edit-appointement/edit-appointement.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -37,6 +42,7 @@ const routes: Routes = [
     {path: 'single-instructor', component: InstructorsDetailsPageComponent},
     {path: 'gallery', component: GalleryPageComponent},
     {path: 'events', component: EventsPageComponent},
+    {path: 'events-creation', component: EventsCreationComponent},
     {path: 'single-events', component: EventsDetailsPageComponent},
     {path: 'feedback', component: FeedbackPageComponent},
     {path: 'donate', component: DonatePageComponent},
@@ -49,7 +55,7 @@ const routes: Routes = [
     {path: 'courses-grid', component: CoursesGridPageComponent}, // to keep
     {path: 'single-courses', component: CoursesDetailsPageComponent},
     {path: 'my-dashboard', component: MyDashboardPageComponent},
-    {path: 'downloads', component: DownloadsPageComponent},
+    {path: 'downloads', component: AppointementsComponent},
     {path: 'edit-address', component: EditAddressPageComponent},
     {path: 'edit-account', component: EditAccountPageComponent},
     {path: 'edit-billing-address', component: EditBillingAddressPageComponent},
@@ -60,6 +66,8 @@ const routes: Routes = [
     {path: 'cart', component: CartPageComponent},
     {path: 'checkout', component: CheckoutPageComponent},
     {path: 'claim', component: ClaimPageComponent},
+    {path: 'takeAppointement', component: TakeappointementComponent},
+    {path: 'edit/:id', component: EditAppointementComponent},
     // Here add new pages component
 
     {path: '**', component: ErrorPageComponent} // This line will remain down from the whole pages component list

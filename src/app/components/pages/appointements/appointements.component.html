@@ -1,0 +1,73 @@
+<app-header-style></app-header-style>
+
+<div class="page-title-area item-bg3">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>My Account</li>
+                <li>Downloads</li>
+            </ul>
+            <h2>My Account</h2>
+        </div>
+    </div>
+</div>
+
+<div class="my-dashboard-area ptb-100">
+    <div class="container">
+        <div class="myDashboard-navigation">
+            <ul>
+                <li>
+                    <a routerLink="/my-dashboard"
+                        ><i class="bx bxs-dashboard"></i> Dashboard</a
+                    >
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="myDashboard-content">
+            <div  class="row">
+                <div class="col-md-9">
+                    <input placeholder="Search appointement"
+                           [disabled]="list.length === 0"
+                           class="form-control" [(ngModel)]="itemToSearch">
+                </div>
+<div class="col-md-3" align="right">  <a [routerLink]="['/takeAppointement']" class="btn btn-primary"  >
+                <i class="bx bx-plus"></i> Take Appointement</a></div>
+          </div>
+            <div class="downloads-table table-responsive mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Observation</th>
+                            <th>Date Appointement</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor=" let appointment of list | filter: itemToSearch">
+                            <td>
+                                <a>{{appointment.observation}}</a>
+                            </td>
+                            <td>{{appointment.dateAppointement | date  : 'YYYY MMMM dd'}}</td>
+                            <td>
+                                <a class="downloads-button">{{appointment.etat}}</a>
+                            </td>
+                              <td>
+                                  <button class="btn btn-info mx-1" (click)="cancelAppointement(appointment.idAppointement)">
+                                       <i class="bx bx-window-close"></i>  </button>
+                                <a class="btn btn-warning" [routerLink]="['/edit/', appointment.idAppointement]">
+                                     <i class="bx bx-pencil"></i>  </a>
+                                <button class="btn btn-danger mx-1" (click)="deleteAppointement(appointment.idAppointement)">
+                                     <i class="bx bx-trash"></i> </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

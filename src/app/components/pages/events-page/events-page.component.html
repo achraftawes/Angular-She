@@ -13,12 +13,14 @@
 </div>
 
 <div class="events-area pt-100 pb-70">
-    <div class="container">
-        <div class="single-events-box mb-30">
-            <div class="events-box">
+    <div class="container" >
+        <div class="single-events-box mb-30" *ngFor="let event of events">
+            <div class="events-box" >
                 <div class="events-image">
                     <div class="image bg1">
-                        <img src="assets/img/events/events1.jpg" alt="image" />
+                        <img src="{{event.imageEvent}}"
+                         alt="image" />
+
                     </div>
                 </div>
                 <div class="events-content">
@@ -29,26 +31,28 @@
                             >
                         </h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                           {{event.description}}
                         </p>
                         <span class="location"
-                            ><i class="bx bx-map"></i> 120 G-35 Spinsovila Sc,
-                            USA</span
+                            ><i class="bx bx-map"></i> {{event.adress}}
+                            </span
                         >
+                        <p>
+                            number attendees: {{event.numberattendees}}
+                          </p>
                         <a routerLink="/single-events" class="join-now-btn"
                             >Join Now</a
                         >
+                      
                     </div>
                 </div>
                 <div class="events-date">
                     <div class="date">
                         <div class="d-table">
                             <div class="d-table-cell">
-                                <span>01</span>
-                                <h3>23 October</h3>
-                                <p>7:30 PM</p>
+                                
+                                <h3>{{event.date_event| date:'medium'}}</h3>
+                                
                                 <i class="bx bx-calendar"></i>
                             </div>
                         </div>
@@ -56,11 +60,11 @@
                 </div>
             </div>
         </div>
-        <div class="single-events-box mb-30">
-            <div class="events-box">
-                <div class="events-image">
+        <div class="single-events-box mb-30" >
+            <div class="events-box"  *ngFor="let event of events">
+                <div class="events-image" >
                     <div class="image bg2">
-                        <img src="assets/img/events/events2.jpg" alt="image" />
+                        <img src="{{ event.imageEvent }}" alt="image" />
                     </div>
                 </div>
                 <div class="events-content">
