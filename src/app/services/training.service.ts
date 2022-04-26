@@ -22,4 +22,10 @@ export class TrainingService {
             .post("/training/add-training", training)
             .toPromise() as Promise<ITraining>;
     }
+
+    deleteTraining(id: number ){
+        return this.http
+        .delete(`/training/remove-trainig/${id}`)
+        .toPromise() as  Promise<number> ; 
+    }
 }

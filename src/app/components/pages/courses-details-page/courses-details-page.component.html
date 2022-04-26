@@ -21,7 +21,7 @@
                     <div class="courses-title">
                         <h2>
                             <ng-template
-                                [ngIf]="lessonSelected"
+                                [ngIf]="lessonSelected && !quizSelected"
                                 [ngIfElse]="elseBlockTitle"
                             >
                                 {{ selectedLesson?.title }}
@@ -40,8 +40,8 @@
                             </li>
                             <li>
                                 <i class="bx bx-calendar"></i>
-                                <span>Start Date</span>
-                                <a>{{training?.startDate}}</a>
+                                <span>Last Updated</span>
+                                <a>01/14/2019</a>
                             </li>
                         </ul>
                     </div>
@@ -74,7 +74,7 @@
             <div class="col-lg-8">
                 <div class="courses-details-image text-center">
                     <ng-template
-                        [ngIf]="lessonSelected"
+                        [ngIf]="lessonSelected && !quizSelected"
                         [ngIfElse]="elseBlockMedia"
                     >
                         <video
@@ -97,17 +97,94 @@
                     </ng-template>
                 </div>
                 <div class="courses-details-desc">
-                    <h3>Description</h3>
-
-                    <ng-template
-                        [ngIf]="lessonSelected"
-                        [ngIfElse]="elseBlockDescription"
-                    >
+                    <ng-template [ngIf]="!quizSelected">
+                        <h3 [ngIf]="quizSelected">Description</h3>
+                    </ng-template>
+                    <ng-template [ngIf]="quizSelected">
+                        <div
+                            class="my-30"
+                            *ngFor="
+                                let question of selectedQuiz.questions;
+                                index as index
+                            "
+                        >
+                            <p class="h3">
+                                {{ question.question }}
+                            </p>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    [name]="'useAnswer' + index"
+                                    [id]="'flexRadioDefault1' + index"
+                                    value="0"
+                                    (change)="
+                                        userAnswerChange($event, question.id)
+                                    "
+                                />
+                                <label
+                                    class="form-check-label"
+                                    [for]="'flexRadioDefault1' + index"
+                                >
+                                    {{ question.choiceA }}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    [name]="'useAnswer' + index"
+                                    [id]="'flexRadioDefault2' + index"
+                                    value="1"
+                                    (change)="
+                                        userAnswerChange($event, question.id)
+                                    "
+                                />
+                                <label
+                                    class="form-check-label"
+                                    [for]="'flexRadioDefault2' + index"
+                                >
+                                    {{ question.choiceB }}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    [name]="'useAnswer' + index"
+                                    [id]="'flexRadioDefault3' + index"
+                                    value="2"
+                                    (change)="
+                                        userAnswerChange($event, question.id)
+                                    "
+                                />
+                                <label
+                                    class="form-check-label"
+                                    [for]="'flexRadioDefault3' + index"
+                                >
+                                    {{ question.choiceC }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button
+                                (click)="submit()"
+                                type="button"
+                                class="btn btn-danger col-sm-3 offset-sm-8"
+                            >
+                                Submit answer
+                            </button>
+                            <ng-template [ngIf]="answerSubmitted">
+                                <p class="h6">Answer submitted!</p>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                    <ng-template [ngIf]="lessonSelected">
                         <markdown>
                             {{ selectedLesson.content }}
                         </markdown>
                     </ng-template>
-                    <ng-template #elseBlockDescription>
+                    <ng-template [ngIf]="!quizSelected && !lessonSelected">
                         <markdown>
                             {{ training.description }}
                         </markdown>
@@ -149,20 +226,15 @@
                                 </div>
                             </div>
                             <p>
-                                {{
-                                    training?.former.firstName +
-                                        " " +
-                                        training?.former.lastName
-                                }}  is a celebrated former 
-                                 and teacher who brings passion to
+                                James Anderson is a celebrated photographer,
+                                author, and teacher who brings passion to
                                 everything he does.
                             </p>
                             <p>
-                                {{ training?.title }} programs provide a host of benefits.
-                                 They enhance employee performance, boost employee productivity, 
-                                 reduce employee turnover, and improve company culture. 
-                                Explore the importance of training and development programs for
-                                 employees and employers by pursuing a career in human resources.
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been
+                                the industry's standard dummy text ever since
+                                the 1500s.
                             </p>
                         </div>
                     </div>
@@ -464,11 +536,22 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <h4>Quiz</h4>
-                                    {{ section.quiz.name }}
+                                    <a (click)="onSelectQuiz(section.idSection)"
+                                        ><h4>Quiz</h4></a
+                                    >
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                    <div>
+                        <span
+                            class="chapter"
+                            [routerLink]="[
+                                '/certificate',
+                                training?.certificate.id
+                            ]"
+                            >Certificate</span
+                        >
                     </div>
                 </div>
                 <div class="courses-purchase-info">

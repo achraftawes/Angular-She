@@ -1,0 +1,106 @@
+<ngb-accordion
+    #acc="ngbAccordion"
+    activeIds="ngb-panel-0"
+    [destroyOnHide]="false"
+>
+    <ngb-panel [title]="'Question' + (index + 1)">
+        <ng-template ngbPanelContent>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">question</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Quiz question..."
+                    name="quiz-question"
+                    [(ngModel)]="questionSentence"
+                    (change)="emitUpdated()"
+                />
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">Answer choice A</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Answer choice A..."
+                    name="choiceA"
+                    [(ngModel)]="choiceA"
+                    (change)="emitUpdated()"
+                />
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">Answer choice B</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Answer choice B..."
+                    name="choiceB"
+                    [(ngModel)]="choiceB"
+                    (change)="emitUpdated()"
+                />
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">Answer choice C</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Answer choice C..."
+                    name="choiceC"
+                    [(ngModel)]="choiceC"
+                    (change)="emitUpdated()"
+                />
+            </div>
+
+            <label for="correctAnswer">Which one is the correct answer?</label>
+            <div
+                class="btn-group-vertical mr-5"
+                role="group"
+                id="correctAnswer"
+                aria-label="Radio Buttons with Bootstrap 5"
+            >
+                <input
+                    type="radio"
+                    value="0"
+                    class="btn-check"
+                    [id]="'btnradio1' + index"
+                    [name]="'correctAnswer' + index"
+                    autocomplete="off"
+                    (change)="correctAnswerChange($event)"
+                />
+                <label
+                    class="btn btn-outline-success"
+                    [for]="'btnradio1' + index"
+                    >Choice A</label
+                >
+
+                <input
+                    type="radio"
+                    value="1"
+                    class="btn-check"
+                    [id]="'btnradio2' + index"
+                    [name]="'correctAnswer' + index"
+                    autocomplete="off"
+                    (change)="correctAnswerChange($event)"
+                />
+                <label
+                    class="btn btn-outline-success"
+                    [for]="'btnradio2' + index"
+                    >Choice B</label
+                >
+                <input
+                    type="radio"
+                    value="2"
+                    [name]="'correctAnswer' + index"
+                    class="btn-check"
+                    [id]="'btnradio3' + index"
+                    autocomplete="off"
+                    (change)="correctAnswerChange($event)"
+                />
+                <label
+                    class="btn btn-outline-success"
+                    [for]="'btnradio3' + index"
+                    >Choice C</label
+                >
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

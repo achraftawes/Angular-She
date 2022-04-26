@@ -1,13 +1,7 @@
-export enum RoleName {
-    FORMER = "FORMER",
-    WOMAN = "WOMAN",
-    JOB_PROPOSER = "JOB_PROPOSER",
-    EXPERT = "EXPERT",
-    DONATOR = "DONATOR",
-    ADMINISTRATOR = "ADMINISTRATOR"
-}
+import { User } from "./user.model";
 
-export interface IRole {
+export class Role {
     id: number;
-    role: RoleName
+    users: User;
+    roleName: Role;
 }

@@ -19,6 +19,12 @@ import { MarkdownModule, MarkedOptions } from "ngx-markdown";
 import { LMarkdownEditorModule } from "ngx-markdown-editor";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgPipesModule } from "ngx-pipes";
+import { NgChatModule } from "ng-chat";
+import {
+    InjectableRxStompConfig,
+    RxStompService,
+    rxStompServiceFactory,
+} from "@stomp/ng2-stompjs";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { environment } from "src/environments/environment";
@@ -85,6 +91,11 @@ import { LanguageCategoryComponent } from "./components/common/language-category
 import { FreeTrialFormComponent } from "./components/common/free-trial-form/free-trial-form.component";
 import { CourseCreationPageComponent } from "./components/pages/course-creation/courses-creation-page.component";
 import { CourseCreationModalComponent } from "./components/common/course-creation-modal/course-creation-modal.component";
+import { CertificatePageComponent } from "./components/pages/certificate-page/certificate-page.component";
+import { AddQuestionComponent } from "./components/common/add-question/add-question.component";
+import { AuthInterceptor } from "./services/authinterceptor.service";
+import { ChatComponent } from "./components/common/chat/chat.component";
+import { myRxStompConfig } from "./config/stomp.config";
 
 @NgModule({
     declarations: [
@@ -94,6 +105,7 @@ import { CourseCreationModalComponent } from "./components/common/course-creatio
         AddDescriptionComponent,
         AddSectionComponent,
         AddLessonComponent,
+        CertificatePageComponent,
         PartnerStyleOneComponent,
         InstructorsStyleOneComponent,
         BecomeInstructorPartnerComponent,
@@ -149,6 +161,8 @@ import { CourseCreationModalComponent } from "./components/common/course-creatio
         LanguageCategoryComponent,
         FreeTrialFormComponent,
         CourseCreationPageComponent,
+        AddQuestionComponent,
+        ChatComponent,
     ],
     imports: [
         NgPipesModule,
@@ -181,6 +195,7 @@ import { CourseCreationModalComponent } from "./components/common/course-creatio
         AccordionModule,
         LightgalleryModule,
         LMarkdownEditorModule,
+        NgChatModule,
     ],
     providers: [
         {
@@ -189,6 +204,20 @@ import { CourseCreationModalComponent } from "./components/common/course-creatio
             multi: true,
         },
         { provide: "BASE_API_URL", useValue: environment.apiUrl },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        {
+            provide: InjectableRxStompConfig,
+            useValue: myRxStompConfig,
+        },
+        {
+            provide: RxStompService,
+            useFactory: rxStompServiceFactory,
+            deps: [InjectableRxStompConfig],
+        },
     ],
     bootstrap: [AppComponent],
 })

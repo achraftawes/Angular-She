@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
+import { ITraining } from "../../../models/training.model";
+import { TrainingService } from "../../../services/training.service";
 
 @Component({
   selector: 'app-my-dashboard-page',
@@ -6,10 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-dashboard-page.component.scss']
 })
 export class MyDashboardPageComponent implements OnInit {
+  constructor(
+    private trainingService: TrainingService,
+     private userService : UserService ,
+    ){}
+    public trainings: ITraining[];
+   // public users: User[] ;
 
-  constructor() { }
+    async  ngOnInit():Promise<void> {
+      this.trainings = await this.trainingService.listTrainings();
+      //this.users=await this.userService.getAllUsers();
+    }
 
-  ngOnInit(): void {
-  }
+    async delete(trainingId){
+      this.trainingService.deleteTraining(trainingId);
+    }
 
 }

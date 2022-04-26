@@ -2181,6 +2181,11 @@ textarea.form-control {
             image: url(assets/img/page-title/page-title4.jpg);
         };
     }
+    &.claim-bg {
+        background: {
+            image: url(assets/img/page-title/claim.webp);
+        };
+    }
 }
 .page-title-content {
     ul {

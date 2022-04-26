@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleName } from 'src/app/models/role-name';
 
 @Component({
     selector: 'app-header-style',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./header-style.component.scss']
 })
 export class HeaderStyleComponent implements OnInit {
-
+    isFormer = false;
     constructor() { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        const rolesRaw = sessionStorage.getItem("roles");
+        if (!!rolesRaw) {
+            try {
+                const parsedRoles = JSON.parse(rolesRaw) as RoleName[];
+                this.isFormer = parsedRoles.includes(RoleName.FORMER);
+               
+            } catch {}
+        }
+
+        
+    }
 
     classApplied = false;
     toggleClass() {

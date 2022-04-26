@@ -1,9 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { filter, map, take } from "rxjs/operators";
 import { ITraining } from "../../../models/training.model";
 import { TrainingService } from "../../../services/training.service";
+import { LearnerAnswerService } from "../../../services/learnerAnswer.service";
 
 @Component({
     selector: "app-courses-details-page",
@@ -15,22 +16,28 @@ export class CoursesDetailsPageComponent implements OnInit {
     public selectedLesson = null;
     public lessonSelected = false;
 
+    public selectedQuiz = null;
+    public quizSelected = false;
+    public answerSubmitted = false;
+
+    public userAnswer = {};
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private trainingService: TrainingService,
-        private changeDetector: ChangeDetectorRef
+        private learnerAnswerService: LearnerAnswerService
     ) {}
 
     async ngOnInit(): Promise<void> {
         const idTraining = await this.route.params
             .pipe(
-                filter((params) => !!params["id-training"]), // filtrer les valeurs où idTraining null
+                filter((params) => !!params["id-training"]),
                 map((params) => params["id-training"]),
                 take(1)
             )
             .toPromise();
-        if (!idTraining) this.router.navigate(["courses-grid"]); // navigation to course grid
+        if (!idTraining) this.router.navigate(["courses-grid"]);
         const training = (await this.trainingService.listTrainings()).find(
             ({ idTraining: trainingId }) => trainingId === +idTraining
         );
@@ -38,20 +45,45 @@ export class CoursesDetailsPageComponent implements OnInit {
         this.training = training;
     }
 
-    onSelectLesson(lessonId) {
-        this.selectedLesson =
-            this.training.sections
-                .reduce((acc, { lesson }) => { //loop on la single lesson 
-                    acc.push(...lesson); //accumulateur
-                    return acc; //accumulation des leçons de chaque section 
-                }, [])
-                .find(({ idLesson }) => idLesson === lessonId) || null; // recherche par id
-        console.log("this.selectedLesson", this.selectedLesson);// retourne le leçon choisi
-        this.reload(); //render the page
+    onSelectQuiz(sectionId: number) {
+        // clean up selected lesson
+        this.selectedLesson = null;
+        this.lessonSelected = false;
+        this.answerSubmitted = false;
+        this.selectedQuiz = this.training.sections.find(
+            ({ idSection }) => idSection === sectionId
+        ).quiz;
+        setTimeout(() => (this.quizSelected = false));
+        setTimeout(() => (this.quizSelected = true));
     }
 
-    private reload() {
+    onSelectLesson(lessonId) {
+        // Clean up selected quiz
+        this.selectedQuiz = null;
+        this.quizSelected = false;
+        this.answerSubmitted = false;
+        this.selectedLesson =
+            this.training.sections
+                .reduce((acc, { lesson }) => {
+                    acc.push(...lesson);
+                    return acc;
+                }, [])
+                .find(({ idLesson }) => idLesson === lessonId) || null;
         setTimeout(() => (this.lessonSelected = false));
         setTimeout(() => (this.lessonSelected = this.selectedLesson !== null));
+    }
+
+    userAnswerChange(event, questionId) {
+        this.userAnswer[questionId] = Number(event.path[0].defaultValue);
+    }
+    async submit() {
+        this.answerSubmitted = false;
+        const quizId = this.selectedQuiz.id;
+        const userAnswer = this.selectedQuiz.questions.map(({ id }) => ({
+            question: id as number,
+            answerIndex: this.userAnswer[id] as number,
+        }));
+        await this.learnerAnswerService.answerQuiz(quizId, userAnswer);
+        this.answerSubmitted = true;
     }
 }

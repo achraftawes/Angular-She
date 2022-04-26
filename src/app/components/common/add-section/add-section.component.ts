@@ -9,6 +9,7 @@ import {
 import { ISection } from "../../../models/section.model";
 import { FormControl } from "@angular/forms";
 import { ILesson } from "../../../models/lesson.model";
+import { IQuestion } from "src/app/models/question.model";
 
 @Component({
     selector: "app-add-section",
@@ -18,13 +19,10 @@ import { ILesson } from "../../../models/lesson.model";
 export class AddSectionComponent implements OnInit {
     public radio: FormControl;
     public numbers = [];
+    public num = [];
     public lessons: ILesson[] = [];
+    public questions: IQuestion[] = [];
     public title;
-    public quizQuestion;
-    public choiceA;
-    public choiceB;
-    public choiceC;
-    public correctAnswer;
 
     @Input("index") index;
 
@@ -42,8 +40,12 @@ export class AddSectionComponent implements OnInit {
         this.emitUpdated();
     }
 
-    correctAnswerChange(event) {
-        this.correctAnswer = event.path[0].defaultValue;
+    addQuiz() {
+        this.questions.push({} as IQuestion);
+        const nextIndex = this.num.length + 1;
+        this.num = Array(nextIndex)
+            .fill(0)
+            .map((_, i) => i);
         this.emitUpdated();
     }
 
@@ -55,16 +57,7 @@ export class AddSectionComponent implements OnInit {
             quiz: {
                 id: 0,
                 name: "",
-                questions: [
-                    {
-                        id: 0,
-                        question: this.quizQuestion,
-                        choiceA: this.choiceA,
-                        choiceB: this.choiceB,
-                        choiceC: this.choiceC,
-                        correctAnswer: this.correctAnswer,
-                    },
-                ],
+                questions: this.questions,
             },
         });
     }

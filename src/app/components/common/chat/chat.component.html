@@ -1,0 +1,9 @@
+<ng-chat
+    *ngIf="canRender"
+    #ngChatInstance
+    [adapter]="adapter"
+    [userId]="userId"
+    [localization]="localization"
+    [hideFriendsList]="!isFormer"
+    (onParticipantChatOpened)="handleAutoOpened($event)"
+></ng-chat>

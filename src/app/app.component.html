@@ -1,3 +1,24 @@
 <!-- <app-preloader></app-preloader> -->
 <router-outlet></router-outlet>
-<app-footer *ngIf="!(location == '/login' || location == '/register' || location == '/coming-soon')"></app-footer>
+<app-chat
+    *ngIf="
+        isLoggedIn &&
+        !(
+            location == '/login' ||
+            location == '/register' ||
+            location == '/coming-soon' ||
+            location == '/certificate'
+        )
+    "
+></app-chat>
+
+<app-footer
+    *ngIf="
+        !(
+            location == '/login' ||
+            location == '/register' ||
+            location == '/coming-soon' ||
+            location == '/certificate'
+        )
+    "
+></app-footer>

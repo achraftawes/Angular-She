@@ -1,4 +1,8 @@
-<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+<ngb-accordion
+    #acc="ngbAccordion"
+    activeIds="ngb-panel-0"
+    [destroyOnHide]="false"
+>
     <ngb-panel [title]="'Lesson ' + (index + 1)">
         <ng-template ngbPanelContent>
             <div class="form-group mb-3">

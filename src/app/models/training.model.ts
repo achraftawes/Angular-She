@@ -1,5 +1,5 @@
 import { ISection } from "./section.model";
-import { IUser } from "./user.model";
+import { User } from "./user.model";
 import { ICertificate } from "./certificate.model";
 import { IAttachment } from "./attachment.model";
 
@@ -20,6 +20,6 @@ export interface ITraining {
     endDate: Date;
     level: Level;
     sections: ISection[];
-    former: IUser;
+    former: User;
     certificate: ICertificate;
 }
