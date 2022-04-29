@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Appointement} from "../../models/Appointement.model";
+import {Appointement} from "../../model/Appointement.model";
 import {Observable} from "rxjs";
 
 const httpOptionsPlain = {

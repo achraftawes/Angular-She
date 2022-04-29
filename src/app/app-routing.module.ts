@@ -29,14 +29,18 @@ import { EditAccountPageComponent } from './components/pages/edit-account-page/e
 import { EditBillingAddressPageComponent } from './components/pages/edit-billing-address-page/edit-billing-address-page.component';
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+ 
 import { EventsCreationComponent } from './components/pages/events-creation/events-creation.component';
 
 import { AppointementsComponent } from './components/pages/appointements/appointements.component';
 import { TakeappointementComponent } from './components/pages/takeappointement/takeappointement.component';
 import { EditAppointementComponent } from './components/pages/edit-appointement/edit-appointement.component';
 
+import { UserAccessGuard } from './security/user-access.guard';
+
+
 const routes: Routes = [
-    {path: '', component: HomePageComponent},
+    {path: '', component: LoginPageComponent/*,canActivate: [UserAccessGuard]*/},
     {path: 'about', component: AboutPagComponent},
     {path: 'instructor', component: InstructorsPageComponent},
     {path: 'single-instructor', component: InstructorsDetailsPageComponent},
@@ -46,7 +50,7 @@ const routes: Routes = [
     {path: 'single-events', component: EventsDetailsPageComponent},
     {path: 'feedback', component: FeedbackPageComponent},
     {path: 'donate', component: DonatePageComponent},
-    {path: 'login', component: LoginPageComponent},
+    {path: 'login', component: LoginPageComponent/*,canActivate: [UserAccessGuard]*/},
     {path: 'register', component: RegisterPageComponent},
     {path: 'faqs', component: FaqPageComponent},
     {path: 'error-404', component: ErrorPageComponent},

@@ -77,6 +77,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppointementsComponent } from './components/pages/appointements/appointements.component';
 import { EditAppointementComponent } from './components/pages/edit-appointement/edit-appointement.component';
 import { TakeappointementComponent } from './components/pages/takeappointement/takeappointement.component';
+
+import { UserComponent } from './user/user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -135,12 +138,16 @@ import { TakeappointementComponent } from './components/pages/takeappointement/t
     HomeMainBannerComponent,
     LanguageCategoryComponent,
     FreeTrialFormComponent,
+
     BlogPageComponent,
    
     EventsCreationComponent,
          AppointementsComponent,
          EditAppointementComponent,
-         TakeappointementComponent
+         TakeappointementComponent,
+
+           UserComponent
+
   ],
   imports: [
     HttpClientModule,
@@ -154,6 +161,7 @@ import { TakeappointementComponent } from './components/pages/takeappointement/t
     StickyNavModule,
     LightboxModule,
     FormsModule,
+    ReactiveFormsModule,
     AccordionModule,
     LightgalleryModule,
     Ng2SearchPipeModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-my-dashboard-page',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDashboardPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+    public users: any[];
 
-  ngOnInit(): void {
-  }
+    async ngOnInit(): Promise<void> {
+        this.users = await this.userService.getAllUsers().toPromise() as any[];
 
+        console.log(this.users);
+
+}
 }

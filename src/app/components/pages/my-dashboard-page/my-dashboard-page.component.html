@@ -16,7 +16,7 @@
     <div class="container">
         <div class="myDashboard-profile">
             <div class="row align-items-center">
-                <div class="col-lg-4 col-md-5">
+                <div class="col-lg-4 col-md-5" >
                     <div class="profile-image">
                         <img
                             src="assets/img/instructor/instructor1.jpg"
@@ -24,9 +24,9 @@
                         />
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-7">
+                <div class="col-lg-8 col-md-7" *ngFor="let user of users">
                     <div class="profile-content">
-                        <h3>James Anderson</h3>
+                        <h3> <a> >{{ user.firstName}} </a> </h3>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing
                             elit. Labore atque officiis maxime suscipit expedita
