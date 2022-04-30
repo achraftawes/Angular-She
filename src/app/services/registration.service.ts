@@ -4,40 +4,39 @@ import { User } from '../model/user.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Role } from '../model/role.model';
 
 
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService{
-  private baseUrl = '/authenticate'; 
+export class RegistrationService{
+  private baseUrl = '/registration'; 
 
   constructor(private http: HttpClient,  private router: Router){}
-  login(user: string, password: string){
-     // console.log('In AuthService -  login');
-      return this.http.post<any>(this.baseUrl, 
-          {username: user, password:password}, {headers})
-          .pipe(catchError(this.handleError),
-              map(userData => {
-                sessionStorage.setItem("username", user);
-                let tokenStr = "Bearer " + userData.token;
-                console.log("Token---  " + tokenStr);
-                sessionStorage.setItem("token", tokenStr);
-                sessionStorage.setItem("roles", JSON.stringify(userData.roles));
-                return userData;
-              })
-          ); 
+  signup(user: User): Observable<any>{
+      console.log('In RegistrationService');
+      console.log('role = '+ user.role);
+      //console.log('role id = '+ user.role.id);
+      console.log('role name = '+ user.role.roleName);
+      return this.http.post(this.baseUrl,  {firstName: user.firstName, lastName:user.lastName,
+        userName:user.userName,email:user.email,pwd:user.pwd,role :{ id : user.role.id,role: user.role.roleName}}, { headers, responseType: 'text'})
+                      .pipe(catchError(this.handleError));;
   }
 
-  logout(){
-      sessionStorage.clear()
-      this.router.navigate(['/login']);
+
+findRoleById(id): Observable<any> {
+    return this.http.get('/role/retrieve-role/'+id);
   }
 
-  isLoggedIn(): boolean{
-      return sessionStorage.getItem('username') !== null;
+findRoles(): Observable<any> {
+    return this.http.get('/role/retrieve-roles');
   }
+
+
+ 
+
 
   private handleError(httpError: HttpErrorResponse) {
       let message:string = '';

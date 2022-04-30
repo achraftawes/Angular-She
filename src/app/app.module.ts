@@ -71,7 +71,9 @@ import { LanguageCategoryComponent } from './components/common/language-category
 import { FreeTrialFormComponent } from './components/common/free-trial-form/free-trial-form.component';
 import { environment } from 'src/environments/environment';
 import { BaseUrlInterceptor } from './config/config.service';
-import { UserComponent } from './user/user.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -130,8 +132,7 @@ import { UserComponent } from './user/user.component';
     WhyChooseUsComponent,
     HomeMainBannerComponent,
     LanguageCategoryComponent,
-    FreeTrialFormComponent,
-    UserComponent,
+    FreeTrialFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -147,7 +148,9 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     ReactiveFormsModule,
     AccordionModule,
-    LightgalleryModule
+    LightgalleryModule,
+    FlexLayoutModule,
+    AngularMaterialModule
   ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
