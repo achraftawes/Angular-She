@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
+import { JobOffersService } from 'src/app/services/JobOffers.service';
 
 @Component({
     selector: 'app-gallery-page',
@@ -8,32 +10,22 @@ import { Lightbox } from 'ngx-lightbox';
 })
 export class GalleryPageComponent implements OnInit {
 
+    public offers:any;
+    constructor(private joboffersService:JobOffersService, private router: Router){}
+
     ngOnInit(): void {
+        this.ListOffers();
+       
     }
-
-    public _album = [];
-    constructor(public _lightbox: Lightbox) {
-        for (let i = 1; i <= 9; i++) {
-            const src = 'assets/img/gallery/gallery' + i + '.jpg';
-            const caption = 'Image ' + i;
-            const thumb = 'assets/img/gallery/gallery' + i + '.jpg';
-            const album = {
-                src: src,
-                caption: caption,
-                thumb: thumb
-            };
-            this._album.push(album);
-        }
+    ListOffers(){
+        this.joboffersService.ListOffers().subscribe(res => this.offers=res);
     }
- 
-    open(index: number): void {
-        // open lightbox
-        this._lightbox.open(this._album, index);
-    }
-    
-    close(): void {
-        // close lightbox programmatically
-        this._lightbox.close();
-    }
-
+    delete(id){
+        this.joboffersService.Delete(id).subscribe(data=>{
+            alert("Delet Offre!!");
+            this.ListOffers();
+          console.log(data);
+          
+        })
+      }
 }

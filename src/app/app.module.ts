@@ -7,9 +7,10 @@ import { TabsModule } from 'ngx-tabset';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { StickyNavModule } from 'ng2-sticky-nav';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from "ngx-accordion";
 import { LightgalleryModule } from 'lightgallery/angular';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,6 +69,10 @@ import { WhyChooseUsComponent } from './components/common/why-choose-us/why-choo
 import { HomeMainBannerComponent } from './components/pages/home-page/home-main-banner/home-main-banner.component';
 import { LanguageCategoryComponent } from './components/common/language-category/language-category.component';
 import { FreeTrialFormComponent } from './components/common/free-trial-form/free-trial-form.component';
+import { environment } from 'src/environments/environment';
+import { BaseUrlInterceptor } from './config/config.service';
+import { JobCreationComponent } from './components/pages/job-creation/job-creation.component';
+import { UpdateOffreComponent } from './update-offre/update-offre.component';
 
 @NgModule({
   declarations: [
@@ -127,8 +132,11 @@ import { FreeTrialFormComponent } from './components/common/free-trial-form/free
     HomeMainBannerComponent,
     LanguageCategoryComponent,
     FreeTrialFormComponent,
+    JobCreationComponent,
+    UpdateOffreComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -140,9 +148,13 @@ import { FreeTrialFormComponent } from './components/common/free-trial-form/free
     LightboxModule,
     FormsModule,
     AccordionModule,
-    LightgalleryModule
+    LightgalleryModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
+      { provide: "BASE_API_URL", useValue: environment.apiUrl }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

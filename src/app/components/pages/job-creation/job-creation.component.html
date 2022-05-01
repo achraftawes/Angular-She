@@ -1,0 +1,149 @@
+<app-header-style></app-header-style>
+
+<div class="page-title-area item-bg4">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>My Dashboard</li>
+                <li>Edit</li>
+            </ul>
+            <h2>My Dashboard</h2>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="myDashboard-content" style="padding-left: 2%; padding-right: 3%;">
+    <form class="edit-account" [formGroup]="offreForm" (ngSubmit)="onSubmit()" novalidate >
+        <br>
+        <div class="row">
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Categorie 
+                        <span class="required">*</span></label
+                    >
+                    <select placeholder="choisir" class="form-control form-control-alternative" formControlName="categorie"
+                  name="categorie">
+                  <option value="" disabled >Choisir</option>
+                  <option value="RH">RH</option>
+                  <option value="FIANANCE">FIANANCE</option>
+                  <option value="TRANSPORT">TRANSPORT</option>
+                  <option value="ADMINISTRATION">ADMINISTRATION</option>
+                  <option value="COMPUTER_SCIENCE">COMPUTER_SCIENCE</option>
+
+                  <option value="SECURITY">SECURITY</option>
+                  
+                </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Type
+                        <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="type"
+                        formControlName="type"
+                        id="type"
+                    />
+                    
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Job-Salary
+                        <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="$$$$"
+                        formControlName="job_salary"
+                        id="job_salary"
+                    />
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Description
+                        <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="description"
+                        formControlName="description"
+                        id="description"
+                    />
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Hire-Date
+                        <span class="required">*</span></label
+                    >
+                    <input
+                        type="date"
+                        class="form-control"
+                        value="mm/dd/yyyy"
+                        formControlName="hire_date"
+                        id="hire_date"
+                    />
+                    
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <label
+                        >Determination-Date
+                        <span class="required">*</span></label
+                    >
+                    <input
+                        type="date"
+                        class="form-control"
+                        value="mm/dd/yyyy"
+                        formControlName="termination_date"
+                        id="termination_date"
+                    />
+                    
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <button type="submit" class="default-btn">
+                    <i class="bx bx-save icon-arrow before"></i
+                    ><span class="label">Save Changes</span
+                    ><i class="bx bx-save icon-arrow after"></i>
+                </button>
+            </div>
+           
+        </div>
+            
+            
+
+        
+    </form>
+    <br>
+    <br>
+</div>

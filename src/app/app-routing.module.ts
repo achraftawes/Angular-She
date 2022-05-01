@@ -29,6 +29,8 @@ import { EditAccountPageComponent } from './components/pages/edit-account-page/e
 import { EditBillingAddressPageComponent } from './components/pages/edit-billing-address-page/edit-billing-address-page.component';
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { JobCreationComponent } from './components/pages/job-creation/job-creation.component';
+import { UpdateOffreComponent } from './update-offre/update-offre.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -36,6 +38,7 @@ const routes: Routes = [
     {path: 'instructor', component: InstructorsPageComponent},
     {path: 'single-instructor', component: InstructorsDetailsPageComponent},
     {path: 'gallery', component: GalleryPageComponent},
+    {path: 'job-creation', component: JobCreationComponent},
     {path: 'events', component: EventsPageComponent},
     {path: 'single-events', component: EventsDetailsPageComponent},
     {path: 'feedback', component: FeedbackPageComponent},
@@ -60,6 +63,7 @@ const routes: Routes = [
     {path: 'cart', component: CartPageComponent},
     {path: 'checkout', component: CheckoutPageComponent},
     {path: 'claim', component: ClaimPageComponent},
+    {path:'edit/:id',component:UpdateOffreComponent},
     // Here add new pages component
 
     {path: '**', component: ErrorPageComponent} // This line will remain down from the whole pages component list

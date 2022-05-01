@@ -72,15 +72,35 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a
-                                routerLink="/gallery"
-                                class="nav-link"
-                                routerLinkActive="active"
-                                [routerLinkActiveOptions]="{
-                                    exact: true
-                                }"
-                                >Job offers</a
-                            >
+                            <a href="javascript:void(0)" class="nav-link"
+                                >Job Offers <i class="bx bx-chevron-down"></i
+                            ></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/gallery"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                        >Job Offers 
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/job-creation"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                        >Add offer
+                                    </a>
+                                </li>
+                                </ul>
                         </li>
                         <li class="nav-item">
                             <a
