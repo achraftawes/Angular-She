@@ -1,0 +1,124 @@
+<app-header-style></app-header-style>
+
+<div class="page-title-area claim-bg">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Contact</li>
+            </ul>
+            <h2>Contact Us</h2>
+        </div>
+    </div>
+</div>
+
+<div class="contact-info-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="contact-info-box mb-30">
+                    <div class="icon">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <h3>Email Here</h3>
+                    <p>
+                        <a href="mailto:ameni.hamdi@esprit.tn"
+                            >ameni.hamdi@esprit.tn</a
+                        >
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="contact-info-box mb-30">
+                    <div class="icon">
+                        <i class="bx bx-map"></i>
+                    </div>
+                    <h3>Location Here</h3>
+                    <p>
+                        <a
+                            href="https://goo.gl/maps/jweDjd9HAW6XydB68"
+                            target="_blank"
+                            >Avenue Fethi Zouhir, Cebalat Ben Ammar 2083,
+                            Tunisia</a
+                        >
+                    </p>
+                </div>
+            </div>
+            <div
+                class="col-lg-4 col-md-6 col-sm-6 offset-lg-0 offset-md-3 offset-sm-3"
+            >
+                <div class="contact-info-box mb-30">
+                    <div class="icon">
+                        <i class="bx bx-phone-call"></i>
+                    </div>
+                    <h3>Call Here</h3>
+                    <p><a href="tel:1234567890">+123 456 7890</a></p>
+                    <p><a href="tel:2414524526">+241 452 4526</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-area pb-100">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Contact Us</span>
+            <h2>Drop us Message for any Query</h2>
+            <p>We will respond to your queries as soon as possible!</p>
+        </div>
+        <div class="contact-form">
+            <form #contactForm="ngForm" (ngSubmit)="submit(contactForm.value)">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <textarea
+                                required
+                                ngModel
+                                #message="ngModel"
+                                name="message"
+                                id="message"
+                                cols="30"
+                                rows="5"
+                                class="form-control"
+                                placeholder="Your message..."
+                            ></textarea>
+                            <div
+                                class="alert alert-danger"
+                                *ngIf="message.touched && !message.value"
+                            >
+                                Message is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <button
+                            type="submit"
+                            class="default-btn"
+                            [class.disabled]="!contactForm.valid"
+                        >
+                            <i class="bx bx-paper-plane icon-arrow before"></i
+                            ><span class="label">Send Message</span
+                            ><i class="bx bx-paper-plane icon-arrow after"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="contact-bg-image">
+        <img src="assets/img/map.png" alt="image" />
+    </div>
+</div>
+
+<div id="map">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2599.350568459086!2d10.189185678717964!3d36.89761797223428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb7454c6ed51%3A0x683b3ab5565cd357!2sESPRIT!5e0!3m2!1sen!2sde!4v1650674702956!5m2!1sen!2sde"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+</div>
