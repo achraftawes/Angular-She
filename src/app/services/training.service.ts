@@ -1,15 +1,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ITraining } from "../models/training.model";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class TrainingService {
     constructor(private http: HttpClient) {}
 
-    listTrainings(): Promise<ITraining[]> {
-        return this.http
-            .get("/training/retrieve-all-trainings")
-            .toPromise() as Promise<ITraining[]>;
+    listTrainings(): Observable<ITraining[]> {
+        return this.http.get("/training/retrieve-all-trainings") as Observable<
+            ITraining[]
+        >;
     }
     getTrainingReview(id: number) {
         return this.http
@@ -21,11 +22,5 @@ export class TrainingService {
         return this.http
             .post("/training/add-training", training)
             .toPromise() as Promise<ITraining>;
-    }
-
-    deleteTraining(id: number ){
-        return this.http
-        .delete(`/training/remove-trainig/${id}`)
-        .toPromise() as  Promise<number> ; 
     }
 }

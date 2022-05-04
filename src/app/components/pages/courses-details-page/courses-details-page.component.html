@@ -6,7 +6,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses-grid">Courses</a></li>
-                <li>{{ training?.title }}</li>
+                <li>{{ (selectedTraining$ | async)?.title }}</li>
             </ul>
             <h2>Courses</h2>
         </div>
@@ -21,13 +21,13 @@
                     <div class="courses-title">
                         <h2>
                             <ng-template
-                                [ngIf]="lessonSelected && !quizSelected"
+                                [ngIf]="(selectedLesson$ | async) !== null"
                                 [ngIfElse]="elseBlockTitle"
                             >
-                                {{ selectedLesson?.title }}
+                                {{ (selectedLesson$ | async).title }}
                             </ng-template>
                             <ng-template #elseBlockTitle>
-                                {{ training?.title }}
+                                {{ (selectedTraining$ | async)?.title }}
                             </ng-template>
                         </h2>
                     </div>
@@ -74,7 +74,7 @@
             <div class="col-lg-8">
                 <div class="courses-details-image text-center">
                     <ng-template
-                        [ngIf]="lessonSelected && !quizSelected"
+                        [ngIf]="(selectedLesson$ | async) !== null"
                         [ngIfElse]="elseBlockMedia"
                     >
                         <video
@@ -82,7 +82,7 @@
                             controls
                             src="{{
                                 'http://localhost:8086/SheApp/attachment/get/' +
-                                    selectedLesson?.url_video.id
+                                    (selectedLesson$ | async)?.url_video.id
                             }}"
                         ></video>
                     </ng-template>
@@ -90,21 +90,22 @@
                         <img
                             src="{{
                                 'http://localhost:8086/SheApp/attachment/get/' +
-                                    training?.imgTraining.id
+                                    (selectedTraining$ | async)?.imgTraining.id
                             }}"
                             alt="image"
                         />
                     </ng-template>
                 </div>
                 <div class="courses-details-desc">
-                    <ng-template [ngIf]="!quizSelected">
+                    <!-- <ng-template [ngIf]="(selectedQuiz$ | async) === null">
                         <h3 [ngIf]="quizSelected">Description</h3>
-                    </ng-template>
-                    <ng-template [ngIf]="quizSelected">
+                    </ng-template> -->
+                    <ng-template [ngIf]="(selectedQuiz$ | async) !== null">
                         <div
                             class="my-30"
                             *ngFor="
-                                let question of selectedQuiz.questions;
+                                let question of (selectedQuiz$ | async)
+                                    .questions;
                                 index as index
                             "
                         >
@@ -174,19 +175,24 @@
                             >
                                 Submit answer
                             </button>
-                            <ng-template [ngIf]="answerSubmitted">
+                            <ng-template [ngIf]="answerSubmitted$ | async">
                                 <p class="h6">Answer submitted!</p>
                             </ng-template>
                         </div>
                     </ng-template>
-                    <ng-template [ngIf]="lessonSelected">
+                    <ng-template [ngIf]="(selectedLesson$ | async) !== null">
                         <markdown>
-                            {{ selectedLesson.content }}
+                            {{ (selectedLesson$ | async).content }}
                         </markdown>
                     </ng-template>
-                    <ng-template [ngIf]="!quizSelected && !lessonSelected">
+                    <ng-template
+                        [ngIf]="
+                            (selectedLesson$ | async) === null &&
+                            (selectedQuiz$ | async) === null
+                        "
+                    >
                         <markdown>
-                            {{ training.description }}
+                            {{ (selectedTraining$ | async).description }}
                         </markdown>
                     </ng-template>
 
@@ -196,7 +202,10 @@
                         <div class="author-profile">
                             <div class="author-profile-title">
                                 <img
-                                    src="{{ training?.former.picture }}"
+                                    src="{{
+                                        (selectedTraining$ | async)?.former
+                                            .picture
+                                    }}"
                                     class="shadow-sm rounded-circle"
                                     alt="image"
                                 />
@@ -206,9 +215,11 @@
                                     <div class="author-profile-details">
                                         <h4>
                                             {{
-                                                training?.former.firstName +
+                                                (selectedTraining$ | async)
+                                                    ?.former.firstName +
                                                     " " +
-                                                    training?.former.lastName
+                                                    (selectedTraining$ | async)
+                                                        ?.former.lastName
                                             }}
                                         </h4>
                                         <span class="d-block"
@@ -506,7 +517,7 @@
                     <h3>Course Syllabus</h3>
                     <div
                         *ngFor="
-                            let section of training?.sections
+                            let section of (selectedTraining$ | async)?.sections
                                 | orderBy: 'idSection';
                             index as index;
                             let x = index
@@ -548,7 +559,7 @@
                             class="chapter"
                             [routerLink]="[
                                 '/certificate',
-                                training?.certificate.id
+                                (selectedTraining$ | async)?.certificate.id
                             ]"
                             >Certificate</span
                         >

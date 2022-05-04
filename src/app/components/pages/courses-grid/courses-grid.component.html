@@ -57,7 +57,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6" *ngFor="let training of trainings">
+            <div
+                class="col-lg-4 col-md-6"
+                *ngFor="let training of trainings$ | async"
+            >
                 <div class="single-courses-box mb-30">
                     <div class="courses-image">
                         <a
@@ -80,7 +83,7 @@
                                     training.idTraining
                                 ]"
                                 class="d-block"
-                                >Entertainment</a
+                                >Business</a
                             >
                         </div>
                     </div>
@@ -117,7 +120,7 @@
                     <div class="courses-box-footer">
                         <ul>
                             <li class="students-number">
-                                <i class="bx bx-user"></i> {{ getReview(training)}} students
+                                <i class="bx bx-user"></i> 10 students
                             </li>
                             <li class="courses-lesson">
                                 <i class="bx bx-book-open"></i>
@@ -164,5 +167,3 @@
         </div>
     </div>
 </div>
-
-

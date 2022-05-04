@@ -25,6 +25,7 @@ import {
     RxStompService,
     rxStompServiceFactory,
 } from "@stomp/ng2-stompjs";
+import { NgxsModule } from "@ngxs/store";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { environment } from "src/environments/environment";
@@ -96,6 +97,9 @@ import { AddQuestionComponent } from "./components/common/add-question/add-quest
 import { AuthInterceptor } from "./services/authinterceptor.service";
 import { ChatComponent } from "./components/common/chat/chat.component";
 import { myRxStompConfig } from "./config/stomp.config";
+import { EditTrainingComponent } from "./components/pages/edit-training/edit-training.component";
+import { EditOrAddTrainingComponent } from "./components/common/edit-or-add-training/edit-or-add-training.component";
+import { States } from "./store";
 
 @NgModule({
     declarations: [
@@ -163,6 +167,8 @@ import { myRxStompConfig } from "./config/stomp.config";
         CourseCreationPageComponent,
         AddQuestionComponent,
         ChatComponent,
+        EditTrainingComponent,
+        EditOrAddTrainingComponent,
     ],
     imports: [
         NgPipesModule,
@@ -196,6 +202,9 @@ import { myRxStompConfig } from "./config/stomp.config";
         LightgalleryModule,
         LMarkdownEditorModule,
         NgChatModule,
+        NgxsModule.forRoot(States, {
+            developmentMode: !environment.production,
+        }),
     ],
     providers: [
         {
