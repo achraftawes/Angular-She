@@ -1,6 +1,6 @@
 import { User } from '../model/user.model';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -8,10 +8,15 @@ import { catchError } from 'rxjs/operators';
     providedIn: 'root',
 })
 export class UserService {
-    private baseUrl = 'localhost:8086/SheApp/user/'; 
+ 
+  header = {
+    headers: new HttpHeaders().
+    set('Authorization',  sessionStorage.getItem('token'))
+  }
+    private baseUrl = '/user'; 
     constructor(private http: HttpClient){}
     getAllUsers(): Observable<any>{
-        return this.http.get(this.baseUrl+'retrieve-all-users', {responseType:'text'})
+        return this.http.get(this.baseUrl+'/retrieve-all-users', this.header)
                         .pipe(catchError(this.handleError));
     }
     getByUserRole():  Observable<any>{
@@ -29,14 +34,13 @@ export class UserService {
     retrieveUser(id: number): Observable<object> {  
       return this.http.post(`${this.baseUrl}`+'retrieve-user/{user-id}', id);  
     }
-    modifyUser(user: object): Observable<object> {  
-      return this.http.post(`${this.baseUrl}`+'modify-user', user);  
+    modifyUser(user: User){ 
+      return this.http.put<any>(this.baseUrl+'/modify-user', {firstName: user.firstName, lastName:user.lastName,
+        userName:user.userName,email:user.email,pwd:user.pwd,role :{ id : user.role.id,role: user.role.roleName}},this.header);  
     }
-    removeUser(id: number): Observable<object> {  
-      return this.http.post(`${this.baseUrl}`+'remove-user/{user-id}', id);  
+    removeUser(username: string): Observable<object> {  
+      return this.http.delete(this.baseUrl+'/remove-user/'+username, this.header);  
     }
-    
-
 
 
     private handleError(httpError: HttpErrorResponse) {

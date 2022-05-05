@@ -6,6 +6,8 @@ import { Observable } from "rxjs";
 export class AuthInterceptor implements HttpInterceptor{
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {       
         let modifiedReq = req
+        console.log('With Token --- ' + sessionStorage.getItem('token')!=null);
+
         if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
             //console.log('With Token --- ' + sessionStorage.getItem('token'));
             modifiedReq = req.clone({
@@ -14,6 +16,8 @@ export class AuthInterceptor implements HttpInterceptor{
                   }
             });
         }
+
         return next.handle(modifiedReq);
+
     }
 }

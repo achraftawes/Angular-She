@@ -27,8 +27,11 @@ export class LoginPageComponent implements OnInit {
       this.authService.login(this.loginForm.value.userName, this.loginForm.value.password).subscribe(
           data=>{
               this.isLoggedin = true
-              console.log(sessionStorage.getItem('roles'))
-              this.router.navigate(['/home']);
+              if(sessionStorage.getItem('roles').includes('ADMINISTRATOR')){
+                this.router.navigate(['/admin-dashboard']);
+              }else {
+                this.router.navigate(['/home']);
+              }
           },
           error=>{
               console.log(error);
@@ -37,5 +40,7 @@ export class LoginPageComponent implements OnInit {
               this.isLoginFailed = true;
           }
       );
+
+
   }
 }

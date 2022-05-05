@@ -1,0 +1,39 @@
+<h1>{{title}}</h1>
+<div mat-dialog-content>
+<form [formGroup]="registrationForm">
+<mat-form-field appearance="outline">
+    <mat-label>Firstname</mat-label>
+    <input matInput placeholder="Your firstname" id="firstName" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Lastname</mat-label>
+    <input matInput placeholder="Your lastname" id="lastName" formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Your username" id="userName" formControlName="userName">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Your password" id="pwd" formControlName="pwd">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Your email" id="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Role</mat-label>
+  <mat-select placeholder="Choose your role" formControlName="id_role" id="id_role" (selectionChange)="onSelectRole($event)">
+    <mat-option *ngFor="let item of RolesList" [value]="item.id"> {{item.role}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</form>
+</div>
+<div mat-dialog-action [align]="'end'">
+<button mat-raised-button color="warn" mat-dialog-close>Close</button>
+<button style="margin: left 8px;" mat-raised-button color="primary" (click)="onSubmit()">{{actionBtn}}</button>
+
+</div>

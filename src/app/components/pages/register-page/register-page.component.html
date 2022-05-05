@@ -1,52 +1,52 @@
 <div class="register-area">
-    <div class="row m-0">
-        <div class="col-lg-6 col-md-12 p-0">
-            <div class="register-image">
-                <img src="assets/img/register-bg.jpg" alt="image">
-            </div>
+<div class="row m-0">
+    <div class="col-lg-6 col-md-12 p-0">
+        <div class="register-image">
+            <img src="assets/img/register-bg.jpg" alt="image">
         </div>
-        <div class="col-lg-6 col-md-12 p-0">
-            <div class="register-content">
-                <div class="d-table">
-                    <div class="d-table-cell">
-                        <div class="register-form">
-                            <div class="logo">
-                                <a routerLink="/"><img src="assets/img/black-logo.png" alt="image"></a>
-                            </div>
-                            <p>Already signed up? <a routerLink="/login">Log in</a></p>
-                            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your firstName" class="form-control" id="firstName" formControlName="firstName">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your lastName" class="form-control" id="lastName" formControlName="lastName">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your username" class="form-control" id="userName" formControlName="userName">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" placeholder="Your password" class="form-control" id="pwd" formControlName="pwd">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" placeholder="Your email address" class="form-control" formControlName="email">
-                                </div>
-                                <div class="form-group">
-                                 <select class="form-control" formControlName="id_role" id="id_role" (change)="onSelectRole($event.target.value)">
-                                    <option [ngValue]="null" [disabled]="true" >Choose your role</option>
-                                    <option *ngFor="let item of RolesList" [value]="item.id">
-                                        {{item.role}}
-                                    </option>
-                                 </select>
-                                </div>
-                                <button type="submit">Sign Up</button>
-                                <div class="alert alert-warning" *ngIf="submitted && isRegistered">
-                                   A verification code was sent on your mail
-                                  </div>
-                            </form>
+    </div>
+    <div class="col-lg-6 col-md-12 p-0">
+        <div class="register-content">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="register-form">
+                        <div class="logo">
+                            <a routerLink="/"><img src="assets/img/black-logo.png" alt="image"></a>
                         </div>
+                        <p>Already signed up? <a routerLink="/login">Log in</a></p>
+                        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your firstName" class="form-control" id="firstName" formControlName="firstName">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Your lastName" class="form-control" id="lastName" formControlName="lastName">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Your username" class="form-control" id="userName" formControlName="userName">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" placeholder="Your password" class="form-control" id="pwd" formControlName="pwd">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" placeholder="Your email address" class="form-control" formControlName="email">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" formControlName="id_role" id="id_role" (change)="onSelectRole($event.target.value)">
+                                <option [ngValue]="null" [disabled]="true" >Choose your role</option>
+                                <option *ngFor="let item of RolesList" [value]="item.id">
+                                    {{item.role}}
+                                </option>
+                                </select>
+                            </div>
+                            <button type="submit">Sign Up</button>
+                            <div class="alert alert-warning" *ngIf="submitted && isRegistered">
+                                A verification code was sent on your mail
+                                </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

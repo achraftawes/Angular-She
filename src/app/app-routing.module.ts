@@ -30,7 +30,13 @@ import { EditBillingAddressPageComponent } from './components/pages/edit-billing
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { UserAccessGuard } from './security/user-access.guard';
+import { RoleName } from './model/role-name';
+import { AdminDashboardPageComponent } from './components/pages/admin-dashboard-page/admin-dashboard-page.component';
+import { DialogComponent } from './components/pages/dialog/dialog.component';
+import { UsersPageComponent } from './components/pages/users-page/users-page.component';
 
+    
+  
 const routes: Routes = [
     {path: '', component: LoginPageComponent/*,canActivate: [UserAccessGuard]*/},
     {path: 'about', component: AboutPagComponent},
@@ -61,6 +67,16 @@ const routes: Routes = [
     {path: 'cart', component: CartPageComponent},
     {path: 'checkout', component: CheckoutPageComponent},
     {path: 'claim', component: ClaimPageComponent},
+    {path: 'admin-dashboard', component: AdminDashboardPageComponent,
+    children: [{
+        path: '',
+        component: UsersPageComponent
+      }, {
+        path: 'users',
+        component: UsersPageComponent
+      }]},
+    {path: 'dialog', component: DialogComponent},
+    
     // Here add new pages component
 
     {path: '**', component: ErrorPageComponent} // This line will remain down from the whole pages component list

@@ -19,7 +19,7 @@ export class RegistrationService{
       console.log('In RegistrationService');
       console.log('role = '+ user.role);
       //console.log('role id = '+ user.role.id);
-      console.log('role name = '+ user.role.roleName);
+      //console.log('role name = '+ user.role.roleName);
       return this.http.post(this.baseUrl,  {firstName: user.firstName, lastName:user.lastName,
         userName:user.userName,email:user.email,pwd:user.pwd,role :{ id : user.role.id,role: user.role.roleName}}, { headers, responseType: 'text'})
                       .pipe(catchError(this.handleError));;

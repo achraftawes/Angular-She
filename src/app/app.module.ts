@@ -73,6 +73,14 @@ import { environment } from 'src/environments/environment';
 import { BaseUrlInterceptor } from './config/config.service';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AdminDashboardPageComponent } from './components/pages/admin-dashboard-page/admin-dashboard-page.component';
+import { DialogComponent } from './components/pages/dialog/dialog.component';
+import { AuthInterceptor } from './services/authinterceptor.service';
+import { AdminHeaderComponent } from './components/pages/admin-header/admin-header.component';
+import { AdminFooterComponent } from './components/pages/admin-footer/admin-footer.component';
+import { AdminSidebarComponent } from './components/pages/admin-sidebar/admin-sidebar.component';
+import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
+import { UsersPageComponent } from './components/pages/users-page/users-page.component';
 
 
 @NgModule({
@@ -132,7 +140,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     WhyChooseUsComponent,
     HomeMainBannerComponent,
     LanguageCategoryComponent,
-    FreeTrialFormComponent
+    FreeTrialFormComponent,
+    AdminDashboardPageComponent,
+    DialogComponent,
+    AdminHeaderComponent,
+    AdminFooterComponent,
+    AdminSidebarComponent,
+    AdminDashboardComponent,
+    UsersPageComponent
   ],
   imports: [
     HttpClientModule,
