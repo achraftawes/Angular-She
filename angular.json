@@ -35,7 +35,7 @@
                 "src/assets/css/animate.min.css",
                 "src/assets/css/flaticon.css",
                 "src/assets/css/boxicons.min.css",
-              "src/styles.scss"
+                "src/styles.scss"
             ],
             "scripts": [],
             "vendorChunk": true,

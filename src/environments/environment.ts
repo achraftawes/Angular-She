@@ -4,8 +4,14 @@
 
 export const environment = {
   production: false,
-  apiUrl:"http://localhost:8086/SheApp"
+  apiUrl:"http://localhost:8086/SheApp",
+  recaptcha: {
+    siteKey: '6Le1RMkfAAAAAL4kuF1kJYn1Cwg6Luy4OZerwv0m',
+  },
+  
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

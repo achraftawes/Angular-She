@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from "ngx-accordion";
 import { LightgalleryModule } from 'lightgallery/angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -165,11 +167,13 @@ import { UsersPageComponent } from './components/pages/users-page/users-page.com
     AccordionModule,
     LightgalleryModule,
     FlexLayoutModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    NgxCaptchaModule
   ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
       { provide: "BASE_API_URL", useValue: environment.apiUrl }
+      
 ],
   bootstrap: [AppComponent]
 })

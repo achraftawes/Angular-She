@@ -34,7 +34,7 @@ registrationForm: FormGroup;
           firstName: new FormControl(null, [Validators.required]),
           lastName: new FormControl(null, [Validators.required]),
           userName: new FormControl(null, [Validators.required]),
-          email: new FormControl(null, [Validators.required]),
+          email: new FormControl(null, [Validators.required,Validators.email]),
           pwd: new FormControl(null, [Validators.required]),
           id_role : new FormControl(null,[Validators.required])});
           this.getRoles();

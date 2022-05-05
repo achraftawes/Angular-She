@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationCancel, NavigationEnd } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { filter } from 'rxjs/operators';
+
 declare let $: any;
 
 @Component({
@@ -19,7 +20,9 @@ export class AppComponent {
     location: any;
     routerSubscription: any;
 
+
     constructor(private router: Router) {
+
     }
 
     ngOnInit(){
@@ -37,4 +40,7 @@ export class AppComponent {
             window.scrollTo(0, 0);
         });
     }
+
+  
+  
 }

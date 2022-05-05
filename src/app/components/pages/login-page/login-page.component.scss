@@ -224,3 +224,12 @@
 @media only screen and (min-width: 1200px) and (max-width: 1275px) {
 
 }
+
+mat-form-field{
+    width: 100%;
+}
+
+re-captcha.is-invalid > div {
+    border: 1px solid #dc3545 !important;
+    border-radius: 0.2rem;
+  }

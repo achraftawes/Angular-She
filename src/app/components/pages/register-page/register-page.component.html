@@ -1,4 +1,4 @@
-<div class="register-area">
+<!--<div class="register-area">
 <div class="row m-0">
     <div class="col-lg-6 col-md-12 p-0">
         <div class="register-image">
@@ -49,4 +49,76 @@
         </div>
     </div>
 </div>
-</div>
+</div>-->
+
+
+<div class="register-area">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-12 p-0">
+            <div class="register-image">
+                <img src="assets/img/register-bg.jpg" alt="image">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 p-0">
+            <div class="register-content">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="register-form">
+                            <div class="logo">
+                                <a routerLink="/"><img src="assets/img/black-logo.png" alt="image"></a>
+                            </div>
+                            <p>Already signed up? <a routerLink="/login">Log in</a></p>
+                            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Firstname</mat-label>
+                                    <input matInput placeholder="Your firstname" id="firstName" formControlName="firstName">
+                                    <mat-hint style="color: red;" *ngIf="registrationForm.get('firstName').touched && registrationForm.get('firstName').errors?.required">Firstname is required</mat-hint>
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Lastname</mat-label>
+                                    <input matInput placeholder="Your lastname" id="lastName" formControlName="lastName">
+                                    <mat-hint style="color: red;" *ngIf="registrationForm.get('lastName').touched && registrationForm.get('lastName').errors?.required">Lastname is required</mat-hint>
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput placeholder="Your username" id="userName" formControlName="userName">
+                                    <mat-hint style="color: red;" *ngIf="registrationForm.get('userName').touched && registrationForm.get('userName').errors?.required">Username is required</mat-hint>
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput matInput [type]="hide ? 'password' : 'text'" placeholder="Your password" id="pwd" formControlName="pwd">
+                                    <mat-hint style="color: red;" *ngIf="registrationForm.get('pwd').touched && registrationForm.get('pwd').errors?.required">Password is required</mat-hint>
+                                </mat-form-field>
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Your email" id="email" formControlName="email">
+                                    <mat-hint style="color: red;" *ngIf="registrationForm.get('email').touched && registrationForm.get('email').errors?.required">Email is required</mat-hint>
+                                    <mat-error *ngIf="registrationForm.get('email').hasError('email')"
+                                        >Please enter a valid email address
+                                      </mat-error>
+                                  </mat-form-field>
+                                  <mat-form-field appearance="outline">
+                                    <mat-label>Role</mat-label>
+                                  <mat-select placeholder="Choose your role" formControlName="id_role" id="id_role" (selectionChange)="onSelectRole($event)">
+                                    <mat-option *ngFor="let item of RolesList" [value]="item.id"> {{item.role}}</mat-option>
+                                  </mat-select>
+                                  <mat-hint style="color: red;" *ngIf="registrationForm.get('id_role').touched && registrationForm.get('id_role').errors?.required">Role is required</mat-hint>
+                                </mat-form-field>
+                                <button type="submit">Sign Up</button>
+                                <div class="alert alert-warning" *ngIf="submitted && !isRegistered">
+                                    {{errorMessage}}
+                                    </div>
+                                <div class="alert alert-warning" *ngIf="submitted && isRegistered">
+                                    A verification code was sent on your mail
+                                    </div>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+

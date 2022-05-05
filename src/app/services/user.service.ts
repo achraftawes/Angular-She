@@ -42,6 +42,10 @@ export class UserService {
       return this.http.delete(this.baseUrl+'/remove-user/'+username, this.header);  
     }
 
+   getUserByUsername(username: string) {  
+      return this.http.get(this.baseUrl+'/findByUsername/'+username, this.header);  
+    }
+
 
     private handleError(httpError: HttpErrorResponse) {
       let message:string = '';

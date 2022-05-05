@@ -11,6 +11,7 @@ import { User } from "../../../model/user.model";
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit {
+  hide = true;
   registrationForm: FormGroup;
     user = new User('', '', '','','',
     '',false,null,null,'', null,null);
@@ -48,9 +49,16 @@ export class RegisterPageComponent implements OnInit {
     }
     registerUser(){
         this.registrationService.signup(this.user)
-        .subscribe(user=> {
-            console.log(user);
-            this.isRegistered = true;
+        .subscribe(response=> {
+            console.log(response);
+            if(response == 'OK'){
+              this.isRegistered = true;
+
+            }else{
+              console.log(response);
+            this.errorMessage = response;
+            this.isRegistered = false;
+            }
         }, error=> {
             console.log(error);
             this.errorMessage = error;
@@ -58,16 +66,13 @@ export class RegisterPageComponent implements OnInit {
         });
     }
 
-    onSelectRole(id_role : string){
-      this.registrationService.findRoleById(id_role).subscribe(
+ 
+   onSelectRole(event){
+      this.registrationService.findRoleById(event.source.value).subscribe(
         response => {
-
           this.role = response;
         }
       )
-      console.log("role = "+ this.role);
-      console.log("role id= "+ id_role);
-
     }
 
 
