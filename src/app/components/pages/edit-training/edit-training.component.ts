@@ -1,94 +1,82 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { Router } from "@angular/router";
-import { TrainingService } from "../../../services/training.service";
-import { AttachmentService } from "../../../services/attachment.service";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ITraining } from "../../../models/training.model";
-import { ISection } from "../../../models/section.model";
 import { CourseCreationModalComponent } from "../../common/course-creation-modal/course-creation-modal.component";
-
+import { Select, Store } from "@ngxs/store";
+import { TrainingManagementState } from "src/app/store";
+import { Observable } from "rxjs";
+import { TrainingManagementActions } from "src/app/store/training-management/training.actions";
+import { TrainingService } from "src/app/services/training.service";
+import { filter, map, take } from "rxjs/operators";
 
 @Component({
-  selector: 'app-edit-training',
-  templateUrl: './edit-training.component.html',
-  styleUrls: ['./edit-training.component.scss']
+    selector: "app-edit-training",
+    templateUrl: "./edit-training.component.html",
+    styleUrls: ["./edit-training.component.scss"],
 })
-export class EditTrainingComponent  {
+export class EditTrainingComponent implements OnInit {
+    constructor(
+        private store: Store,
+        private modalService: NgbModal,
+        private router: Router,
+        private route: ActivatedRoute,
+        private trainingService: TrainingService
+    ) {}
 
-  public numbers = [];
-  private file: File;
-  public trainingTitle: string;
-  public trainingDescription: string;
-  public sections: ISection[] = [];
-  private trainingId;
+    async ngOnInit(): Promise<void> {
+        const idTraining = await this.route.params
+            .pipe(
+                filter((params) => !!params["id-training"]),
+                map((params) => params["id-training"]),
+                take(1)
+            )
+            .toPromise();
 
-  constructor(
-      private trainingService: TrainingService,
-      private attachmentService: AttachmentService,
-      private modalService: NgbModal,
-      private router: Router
-  ) {}
+        const training = (
+            await this.trainingService.listTrainings().toPromise()
+        ).find((training) => training.idTraining === +idTraining);
 
-  onFileSelected(event) {
-      this.file = event.target.files[0];
-  }
-  addSection() {
-      this.sections.push({} as ISection);
-      const nextIndex = this.numbers.length + 1;
-      this.numbers = Array(nextIndex)
-          .fill(0)
-          .map((_, i) => i);
-  }
+        this.store.dispatch(
+            new TrainingManagementActions.SetTraining(training)
+        );
+    }
 
-  onTrainingDescriptionChange(content) {
-      this.trainingDescription = content;
-  }
-  async submit() {
-      try {
-          const imgTraining = await this.attachmentService.uploadFile(
-              this.file
-          );
-          const training = {
-              title: this.trainingTitle,
-              description: this.trainingDescription,
-              imgTraining,
-              sections: this.sections.filter((section) => section.title),
-          } as ITraining;
+    @Select(TrainingManagementState.getTraining)
+    training$: Observable<ITraining>;
 
-          this.trainingId = await this.trainingService.addTraining(training);
-          this.open(this.trainingId);
-      } catch {
-          this.open(-1);
-      }
-  }
+    onSubmit() {
+        this.store.dispatch(new TrainingManagementActions.SaveTraining(false));
+        this.open(1);
+    }
 
-  open(courseId) {
-      const modalRef = this.modalService.open(CourseCreationModalComponent);
-      modalRef.componentInstance.courseId = courseId;
-      modalRef.result.then(
-          (result) => {
-              this.getDismissReason(result);
-          },
-          (reason) => {
-              this.getDismissReason(reason);
-          }
-      );
-  }
+    open(courseId) {
+        const modalRef = this.modalService.open(CourseCreationModalComponent);
+        modalRef.componentInstance.courseId = courseId;
+        modalRef.result.then(
+            (result) => {
+                this.getDismissReason(result);
+            },
+            (reason) => {
+                this.getDismissReason(reason);
+            }
+        );
+    }
 
-  private getDismissReason(reason: any) {
-    switch (reason) {
-          case ModalDismissReasons.ESC:
-          case ModalDismissReasons.BACKDROP_CLICK:
-          case "Close":
-          case "Cross":
-              window.location.reload();
-              break;
-          case "Details":
-              this.router.navigate([`/single-courses/${this.trainingId}`]);
-              break;
-          default:
-              window.location.reload();
-              break;
-      }
-  }
+    private getDismissReason(reason: any) {
+        switch (reason) {
+            case ModalDismissReasons.ESC:
+            case ModalDismissReasons.BACKDROP_CLICK:
+            case "Close":
+            case "Cross":
+                window.location.reload();
+                break;
+            case "Details":
+                this.router.navigate([`/courses-grid`]);
+                break;
+            default:
+                window.location.reload();
+                break;
+        }
+    }
 }

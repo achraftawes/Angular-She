@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
 import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Router } from "@angular/router";
-import { TrainingService } from "../../../services/training.service";
-import { AttachmentService } from "../../../services/attachment.service";
-import { ITraining } from "../../../models/training.model";
-import { ISection } from "../../../models/section.model";
 import { CourseCreationModalComponent } from "../../common/course-creation-modal/course-creation-modal.component";
+import { Select, Store } from "@ngxs/store";
+import { TrainingManagementState } from "../../../store/";
+import { Observable } from "rxjs";
+import { ITraining } from "../../../models/training.model";
+import { TrainingManagementActions } from "src/app/store/training-management/training.actions";
 
 @Component({
     selector: "app-course-creation-page",
@@ -13,51 +14,18 @@ import { CourseCreationModalComponent } from "../../common/course-creation-modal
     styleUrls: ["./course-creation-page.component.scss"],
 })
 export class CourseCreationPageComponent {
-    public numbers = [];
-    private file: File;
-    public trainingTitle: string;
-    public trainingDescription: string;
-    public sections: ISection[] = [];
-    private trainingId;
-
     constructor(
-        private trainingService: TrainingService,
-        private attachmentService: AttachmentService,
+        private store: Store,
         private modalService: NgbModal,
         private router: Router
     ) {}
 
-    onFileSelected(event) {
-        this.file = event.target.files[0];
-    }
-    addSection() {
-        this.sections.push({} as ISection);
-        const nextIndex = this.numbers.length + 1;
-        this.numbers = Array(nextIndex)
-            .fill(0)
-            .map((_, i) => i);
-    }
+    @Select(TrainingManagementState.getTraining)
+    training$: Observable<ITraining>;
 
-    onTrainingDescriptionChange(content) {
-        this.trainingDescription = content;
-    }
-    async submit() {
-        try {
-            const imgTraining = await this.attachmentService.uploadFile(
-                this.file
-            );
-            const training = {
-                title: this.trainingTitle,
-                description: this.trainingDescription,
-                imgTraining,
-                sections: this.sections.filter((section) => section.title),
-            } as ITraining;
-
-            this.trainingId = await this.trainingService.addTraining(training);
-            this.open(this.trainingId);
-        } catch {
-            this.open(-1);
-        }
+    onSubmit() {
+        this.store.dispatch(new TrainingManagementActions.SaveTraining(true));
+        this.open(1);
     }
 
     open(courseId) {
@@ -82,7 +50,7 @@ export class CourseCreationPageComponent {
                 window.location.reload();
                 break;
             case "Details":
-                this.router.navigate([`/single-courses/${this.trainingId}`]);
+                this.router.navigate([`/courses-grid`]);
                 break;
             default:
                 window.location.reload();

@@ -23,4 +23,12 @@ export class TrainingService {
             .post("/training/add-training", training)
             .toPromise() as Promise<ITraining>;
     }
+
+    updateTraining(training: ITraining): Promise<string> {
+        return this.http
+            .put(`/training/updateTraining/${training.idTraining}`, training, {
+                responseType: "text",
+            })
+            .toPromise() as Promise<string>;
+    }
 }

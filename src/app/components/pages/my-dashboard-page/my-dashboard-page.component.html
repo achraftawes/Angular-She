@@ -3,32 +3,39 @@
 <div class="my-dashboard-area ptb-100">
     <div class="container">
         <div class="myDashboard-profile">
-            <div class="row align-items-center"  *ngFor="let training of trainings">
+            <div class="row align-items-center">
                 <div class="col-lg-4 col-md-5">
                     <div class="profile-image">
-                        
                         <img
-                            src="{{ training.former.picture }}"
+                            src="{{ trainings[0].former.picture }}"
                             alt="image"
                         />
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">
                     <div class="profile-content">
-
-                        <h3> {{ training.former.firstName +  " " +
-                            training.former.lastName}} </h3>
+                        <h3>
+                            {{
+                                trainings[0].former.firstName +
+                                    " " +
+                                    trainings[0].former.lastName
+                            }}
+                        </h3>
                         <p>
-                            A good teacher can help to transform even the most seemingly helpless among us 
-                            and help them to reach their full potential. 
-                            After all, behind every success story is a teacher, 
-                            whether inside or outside of the classroom.
+                            A good teacher can help to transform even the most
+                            seemingly helpless among us and help them to reach
+                            their full potential. After all, behind every
+                            success story is a teacher, whether inside or
+                            outside of the classroom.
                         </p>
                         <ul class="contact-info">
                             <li>
                                 <i class="bx bx-envelope"></i>
-                                <a href="mailto:{{training.former.email}}"
-                                    >{{training.former.email}}</a
+                                <a
+                                    href="mailto:{{
+                                        trainings[0].former.email
+                                    }}"
+                                    >{{ trainings[0].former.email }}</a
                                 >
                             </li>
                             <li>
@@ -37,9 +44,7 @@
                             </li>
                             <li>
                                 <i class="bx bx-world"></i>
-                                <a  [routerLink]="['/']"
-                                    >www.sheForSHE.com</a
-                                >
+                                <a [routerLink]="['/']">www.sheForSHE.com</a>
                             </li>
                         </ul>
                         <ul class="social">
@@ -69,7 +74,9 @@
                                 ></a>
                             </li>
                         </ul>
-                        <a routerLink="/login" class="myDashboard-logout">Logout</a>
+                        <a routerLink="/login" class="myDashboard-logout"
+                            >Logout</a
+                        >
                     </div>
                 </div>
             </div>
@@ -108,11 +115,22 @@
         </div>
         <div class="myDashboard-content" *ngFor="let training of trainings">
             <p>
-                Hello <strong>{{ training.former.firstName +  " " +
-                    training.former.lastName}} </strong> (not
-                <strong>{{ training.former.firstName +  " " +
-                    training.former.lastName}} </strong>?
-                <a routerLink="/login">Log out</a>)
+                Hello
+                <strong
+                    >{{
+                        training.former.firstName +
+                            " " +
+                            training.former.lastName
+                    }}
+                </strong>
+                (not
+                <strong
+                    >{{
+                        training.former.firstName +
+                            " " +
+                            training.former.lastName
+                    }} </strong
+                >? <a routerLink="/login">Log out</a>)
             </p>
             <p>
                 From your account dashboard you can view your
@@ -122,7 +140,10 @@
                 <a routerLink="/edit-account">account details</a>.
             </p>
             <h3>Recent Orders</h3>
-            <div class="recent-orders-table table-responsive" *ngFor="let training of trainings" >
+            <div
+                class="recent-orders-table table-responsive"
+                *ngFor="let training of trainings"
+            >
                 <table class="table">
                     <thead>
                         <tr>
@@ -135,35 +156,41 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{training.title}}</td>
+                            <td>{{ training.title }}</td>
                             <td>
                                 <markdown>
-                                    {{ training.description.slice(0,100) }}
+                                    {{ training.description.slice(0, 100) }}
                                 </markdown>
                             </td>
-                            <td><img
-                                src="{{ 'http://localhost:8086/SheApp/attachment/get/' +
-                                    training?.imgTraining.id }}"
-                                class="rounded-circle mr-2"
-                                alt="image"
-                            /></td>
-                            <td>{{training.startDate}}</td>
+                            <td>
+                                <img
+                                    src="{{
+                                        'http://localhost:8086/SheApp/attachment/get/' +
+                                            training?.imgTraining.id
+                                    }}"
+                                    class="rounded-circle mr-2"
+                                    alt="image"
+                                />
+                            </td>
+                            <td>{{ training.startDate }}</td>
                             <td>
                                 <a
-                                    routerLink="/single-courses"
+                                    [routerLink]="
+                                        '/edit-course/' + training.idTraining
+                                    "
                                     class="view-button"
                                     >Edit</a
                                 >
                                 <a
-                                routerLink="/single-courses"
-                                class="view-button"
-                                >Delete</a
-                            >
-                            <a
-                            routerLink="/single-courses"
-                            class="view-button"
-                            >Statistics</a
-                        >
+                                    routerLink="/single-courses"
+                                    class="view-button"
+                                    >Delete</a
+                                >
+                                <a
+                                    routerLink="/single-courses"
+                                    class="view-button"
+                                    >Statistics</a
+                                >
                             </td>
                         </tr>
                     </tbody>

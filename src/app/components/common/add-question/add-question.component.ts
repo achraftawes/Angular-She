@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from "@angular/core";
+import { Store } from "@ngxs/store";
 import { IQuestion } from "src/app/models/question.model";
+import { QuizActions } from "src/app/store/training-management/quiz.actions";
 
 @Component({
     selector: "app-add-question",
@@ -9,37 +11,37 @@ import { IQuestion } from "src/app/models/question.model";
 export class AddQuestionComponent implements OnInit {
     @Input("index") index;
     @Input() question: IQuestion;
-    @Output() questionChange = new EventEmitter<IQuestion>();
-    constructor() {}
-    public questionSentence;
-    public choiceA;
-    public choiceB;
-    public choiceC;
-    public correctAnswer;
+    constructor(private store: Store) {}
 
     ngOnInit(): void {}
     correctAnswerChange(event) {
-        this.correctAnswer = event.path[0].defaultValue;
-        this.emitUpdated();
-        console.log(event.target);
+        const correctAnswer = +event.path[0].defaultValue;
+        this.store.dispatch(
+            new QuizActions.EditCorrectAnswer(this.question.id, correctAnswer)
+        );
     }
-    emitUpdated() {
-        console.log({
-            id: 0,
-            question: this.questionSentence,
-            choiceA: this.choiceA,
-            choiceB: this.choiceB,
-            choiceC: this.choiceC,
-            correctAnswer: this.correctAnswer,
-        });
 
-        this.questionChange.emit({
-            id: 0,
-            question: this.questionSentence,
-            choiceA: this.choiceA,
-            choiceB: this.choiceB,
-            choiceC: this.choiceC,
-            correctAnswer: this.correctAnswer,
-        });
+    onQuestionChange(event) {
+        this.store.dispatch(
+            new QuizActions.EditQuestion(this.question.id, event.target.value)
+        );
+    }
+
+    onChangeChoiceA(event) {
+        this.store.dispatch(
+            new QuizActions.EditChoiceA(this.question.id, event.target.value)
+        );
+    }
+
+    onChangeChoiceB(event) {
+        this.store.dispatch(
+            new QuizActions.EditChoiceB(this.question.id, event.target.value)
+        );
+    }
+
+    onChangeChoiceC(event) {
+        this.store.dispatch(
+            new QuizActions.EditChoiceC(this.question.id, event.target.value)
+        );
     }
 }

@@ -50,18 +50,15 @@ export class RegisterPageComponent implements OnInit {
         this.user.userName = this.registrationForm.value.userName;
         this.user.email = this.registrationForm.value.email;
         this.user.pwd = this.registrationForm.value.password;
-        //console.log(this.getSelectedRoles());
         this.user.roles = this.getSelectedRoles();
         this.registerUser();
     }
     registerUser() {
         this.authService.signup(this.user).subscribe(
             (user) => {
-                console.log(user);
                 this.isRegistered = true;
             },
             (error) => {
-                console.log(error);
                 this.errorMessage = error;
                 this.isRegistered = false;
             }

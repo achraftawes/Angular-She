@@ -1,9 +1,9 @@
 <ngb-accordion
     #acc="ngbAccordion"
-    activeIds="ngb-panel-0"
+    [activeIds]="'ngb-panel-' + index"
     [destroyOnHide]="false"
 >
-    <ngb-panel [title]="'Section ' + (index + 1)">
+    <ngb-panel [title]="'Section ' + (index + 1)" [id]="'ngb-panel-' + index">
         <ng-template ngbPanelContent>
             <div class="form-group mb-3">
                 <label for="formGroupExampleInput">Section title</label>
@@ -12,22 +12,21 @@
                     class="form-control"
                     placeholder="Section title..."
                     name="section-title"
-                    [(ngModel)]="title"
-                    (change)="emitUpdated()"
+                    [value]="section.title"
+                    (change)="onTitleChange($event)"
                 />
             </div>
             <button
                 type="button"
                 class="btn btn-primary mb-3 mt-3"
-                (click)="addQuiz()"
+                (click)="addQuestion()"
             >
                 Add Question
             </button>
             <app-add-question
-                *ngFor="let number of num"
-                [index]="number"
-                [(question)]="questions[number]"
-                (change)="emitUpdated()"
+                *ngFor="let question of section.quiz.questions; let y = index"
+                [index]="y"
+                [question]="question"
             ></app-add-question>
 
             <button
@@ -38,10 +37,9 @@
                 Add Lesson
             </button>
             <app-add-lesson
-                *ngFor="let number of numbers"
-                [index]="number"
-                [(lesson)]="lessons[number]"
-                (change)="emitUpdated()"
+                *ngFor="let lesson of section.lesson; let y = index"
+                [index]="y"
+                [lesson]="lesson"
             ></app-add-lesson>
         </ng-template>
     </ngb-panel>

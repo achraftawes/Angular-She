@@ -36,7 +36,6 @@ export class LoginPageComponent implements OnInit {
                     this.router.navigate(["/"]);
                 },
                 (error) => {
-                    console.log(error);
                     this.errorMessage = error;
                     this.isLoggedin = false;
                     this.isLoginFailed = true;

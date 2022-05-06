@@ -7,53 +7,17 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses-grid">Courses</a></li>
             </ul>
-            <h2>Edit Training</h2>
+            <h2>Create new training</h2>
         </div>
     </div>
 </div>
 
 <div class="container add-raining">
-    <h6 class="display-6">Add training</h6>
-    <form>
-        <div class="form-group mb-3">
-            <label for="formGroupExampleInput">Training title</label>
-            <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="trainingTitle"
-                placeholder="Training title..."
-                name="training-title"
-            />
-        </div>
-        <div class="form-group mb-3">
-            <label for="formFile" class="form-label">Training image</label>
-            <input
-                type="file"
-                (change)="onFileSelected($event)"
-                class="form-control"
-                id="formFile"
-            />
-        </div>
-        <div class="form-group mb-3">
-            <label for="formGroupExampleInput">Training description</label>
-            <app-add-description
-                (contentChange)="onTrainingDescriptionChange($event)"
-            ></app-add-description>
-        </div>
-        <button
-            type="button"
-            class="btn btn-primary mb-3"
-            (click)="addSection()"
-        >
-            Add section
-        </button>
-        <app-add-section
-            *ngFor="let number of numbers"
-            [index]="number"
-            [(section)]="sections[number]"
-        ></app-add-section>
-        <button type="button" class="btn btn-primary mb-3" (click)="submit()">
-            Submit
-        </button>
-    </form>
+    <h6 class="display-6">Edit training</h6>
+</div>
+<div class="container">
+    <app-edit-or-add-training
+        [training]="training$ | async"
+        (submit)="onSubmit()"
+    ></app-edit-or-add-training>
 </div>

@@ -31,6 +31,7 @@ import { EditShippingAddressPageComponent } from "./components/pages/edit-shippi
 import { HomePageComponent } from "./components/pages/home-page/home-page.component";
 import { CourseCreationPageComponent } from "./components/pages/course-creation/courses-creation-page.component";
 import { CertificatePageComponent } from "./components/pages/certificate-page/certificate-page.component";
+import { EditTrainingComponent } from "./components/pages/edit-training/edit-training.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent, pathMatch: "full" },
@@ -52,6 +53,10 @@ const routes: Routes = [
     {
         path: "single-courses/:id-training",
         component: CoursesDetailsPageComponent,
+    },
+    {
+        path: "edit-course/:id-training",
+        component: EditTrainingComponent,
     },
     { path: "create-course", component: CourseCreationPageComponent },
     {

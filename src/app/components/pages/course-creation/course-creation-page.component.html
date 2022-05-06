@@ -16,5 +16,8 @@
     <h6 class="display-6">Add training</h6>
 </div>
 <div class="container">
-    <app-edit-or-add-training></app-edit-or-add-training>
+    <app-edit-or-add-training
+        [training]="training$ | async"
+        (submit)="onSubmit()"
+    ></app-edit-or-add-training>
 </div>

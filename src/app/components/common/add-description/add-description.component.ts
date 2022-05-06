@@ -1,22 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-
-interface UploadResult {
-    isImg: boolean;
-    name: string;
-    url: string;
-}
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
     selector: "app-add-description",
     templateUrl: "./add-description.component.html",
     styleUrls: ["./add-description.component.scss"],
 })
-// c'est le fils 
 export class AddDescriptionComponent implements OnInit {
     public options;
 
-    public content;
-    @Output() contentChange = new EventEmitter<string>(); //  dans md  le contenue du text dans description change 
+    @Input() value: string;
+
+    @Output() contentChange = new EventEmitter<string>();
 
     constructor() {
         this.options = {
@@ -25,8 +19,8 @@ export class AddDescriptionComponent implements OnInit {
             resizable: true, // Allow resize the editor
         };
     }
-    onChange() {
-        this.contentChange.emit(this.content);
+    onChange(event) {
+        this.contentChange.emit(event.target.value);
     }
     ngOnInit(): void {
         this.onChange.bind(this);

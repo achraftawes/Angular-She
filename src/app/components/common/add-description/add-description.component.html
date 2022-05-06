@@ -3,10 +3,10 @@
     [height]="'200px'"
     [options]="options"
     required
-    [(ngModel)]="content"
+    [ngModel]="value"
     name="content"
-    (change)="onChange()"
-    (paste)="onChange()"
+    (change)="onChange($event)"
+    (paste)="onChange($event)"
     maxlength="15000"
 >
 </md-editor>

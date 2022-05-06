@@ -1,15 +1,12 @@
-import {
-    Component,
-    EventEmitter,
-    forwardRef,
-    Input,
-    OnInit,
-    Output,
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ISection } from "../../../models/section.model";
 import { FormControl } from "@angular/forms";
 import { ILesson } from "../../../models/lesson.model";
 import { IQuestion } from "src/app/models/question.model";
+import { Store } from "@ngxs/store";
+import { LessonActions } from "src/app/store/training-management/lesson.actions";
+import { QuizActions } from "src/app/store/training-management/quiz.actions";
+import { SectionActions } from "src/app/store/training-management/section.actions";
 
 @Component({
     selector: "app-add-section",
@@ -18,47 +15,34 @@ import { IQuestion } from "src/app/models/question.model";
 })
 export class AddSectionComponent implements OnInit {
     public radio: FormControl;
-    public numbers = [];
-    public num = [];
-    public lessons: ILesson[] = [];
-    public questions: IQuestion[] = [];
-    public title;
+    // public numbers = [];
+    // public num = [];
+    // public lessons: ILesson[] = [];
+    // public questions: IQuestion[] = [];
+    // public title;
 
     @Input("index") index;
 
     @Input() section: ISection;
-    @Output() sectionChange = new EventEmitter<ISection>();
-    constructor() {}
+    constructor(private store: Store) {}
     ngOnInit(): void {}
 
     addLesson() {
-        this.lessons.push({} as ILesson);
-        const nextIndex = this.numbers.length + 1;
-        this.numbers = Array(nextIndex)
-            .fill(0)
-            .map((_, i) => i);
-        this.emitUpdated();
+        this.store.dispatch(new LessonActions.Add(this.section.idSection));
     }
 
-    addQuiz() {
-        this.questions.push({} as IQuestion);
-        const nextIndex = this.num.length + 1;
-        this.num = Array(nextIndex)
-            .fill(0)
-            .map((_, i) => i);
-        this.emitUpdated();
+    addQuestion() {
+        this.store.dispatch(
+            new QuizActions.AddQuestion(this.section.idSection)
+        );
     }
 
-    emitUpdated() {
-        this.sectionChange.emit({
-            idSection: 0,
-            lesson: this.lessons.filter((lesson) => lesson.title),
-            title: this.title,
-            quiz: {
-                id: 0,
-                name: "",
-                questions: this.questions,
-            },
-        });
+    onTitleChange(event) {
+        this.store.dispatch(
+            new SectionActions.EditTitle(
+                this.section.idSection,
+                event.target.value
+            )
+        );
     }
 }

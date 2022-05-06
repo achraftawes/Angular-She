@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Store } from "@ngxs/store";
 import { ILesson } from "../../../models/lesson.model";
 import { AttachmentService } from "../../../services/attachment.service";
+import { LessonActions } from "src/app/store/training-management/lesson.actions";
 
 @Component({
     selector: "app-add-lesson",
@@ -10,37 +12,33 @@ import { AttachmentService } from "../../../services/attachment.service";
 export class AddLessonComponent {
     @Input("index") index;
     @Input() lesson: ILesson;
-    @Output() lessonChange = new EventEmitter<ILesson>();
-    constructor(private attachmentService: AttachmentService) {}
+    constructor(
+        private attachmentService: AttachmentService,
+        private store: Store
+    ) {}
 
-    public title;
-    public content;
-    public video;
-    private file: File;
+    public file: File;
 
-    async onFileSelected(event) { //upload du fichier directement qu la selection se fait 
+    async onFileSelected(event) {
         this.file = event.target.files[0];
-        this.video = await this.attachmentService.uploadFile(this.file);
-        this.emitUpdated();
+        const urlVideo = await this.attachmentService.uploadFile(this.file);
+        this.store.dispatch(
+            new LessonActions.EditUrlVideo(this.lesson.idLesson, urlVideo)
+        );
     }
 
     onLessonDescriptionChange(content) {
-        this.content = content;
-        this.emitUpdated();
+        this.store.dispatch(
+            new LessonActions.EditContent(this.lesson.idLesson, content)
+        );
     }
 
-    emitUpdated() {
-        console.log({
-            idLesson: 0,
-            title: this.title,
-            content: this.content,
-            url_video: this.video,
-        });
-        this.lessonChange.emit({
-            idLesson: 0,
-            title: this.title,
-            content: this.content,
-            url_video: this.video,
-        });
+    onTitleChange(event) {
+        this.store.dispatch(
+            new LessonActions.EditTitle(
+                this.lesson.idLesson,
+                event.target.value
+            )
+        );
     }
 }

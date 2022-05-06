@@ -4,7 +4,8 @@
         <input
             type="text"
             class="form-control"
-            [(ngModel)]="trainingTitle"
+            [value]="training.title"
+            (change)="onTitleChange($event)"
             placeholder="Training title..."
             name="training-title"
         />
@@ -21,6 +22,7 @@
     <div class="form-group mb-3">
         <label for="formGroupExampleInput">Training description</label>
         <app-add-description
+            [value]="training.description"
             (contentChange)="onTrainingDescriptionChange($event)"
         ></app-add-description>
     </div>
@@ -28,9 +30,9 @@
         Add section
     </button>
     <app-add-section
-        *ngFor="let number of numbers"
-        [index]="number"
-        [(section)]="sections[number]"
+        *ngFor="let section of training.sections; let y = index"
+        [index]="y"
+        [section]="section"
     ></app-add-section>
     <button type="button" class="btn btn-primary mb-3" (click)="onSubmit()">
         Submit

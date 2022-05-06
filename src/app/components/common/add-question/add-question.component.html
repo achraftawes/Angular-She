@@ -1,9 +1,12 @@
 <ngb-accordion
     #acc="ngbAccordion"
-    activeIds="ngb-panel-0"
+    [activeIds]="'ngb-panel-question' + index"
     [destroyOnHide]="false"
 >
-    <ngb-panel [title]="'Question' + (index + 1)">
+    <ngb-panel
+        [title]="'Question ' + (index + 1)"
+        [id]="'ngb-panel-question' + index"
+    >
         <ng-template ngbPanelContent>
             <div class="form-group mb-3">
                 <label for="formGroupExampleInput">question</label>
@@ -12,8 +15,8 @@
                     class="form-control"
                     placeholder="Quiz question..."
                     name="quiz-question"
-                    [(ngModel)]="questionSentence"
-                    (change)="emitUpdated()"
+                    [value]="question.question"
+                    (change)="onQuestionChange($event)"
                 />
             </div>
             <div class="form-group mb-3">
@@ -23,8 +26,8 @@
                     class="form-control"
                     placeholder="Answer choice A..."
                     name="choiceA"
-                    [(ngModel)]="choiceA"
-                    (change)="emitUpdated()"
+                    [value]="question.choiceA"
+                    (change)="onChangeChoiceA($event)"
                 />
             </div>
             <div class="form-group mb-3">
@@ -34,8 +37,8 @@
                     class="form-control"
                     placeholder="Answer choice B..."
                     name="choiceB"
-                    [(ngModel)]="choiceB"
-                    (change)="emitUpdated()"
+                    [value]="question.choiceB"
+                    (change)="onChangeChoiceB($event)"
                 />
             </div>
             <div class="form-group mb-3">
@@ -45,8 +48,8 @@
                     class="form-control"
                     placeholder="Answer choice C..."
                     name="choiceC"
-                    [(ngModel)]="choiceC"
-                    (change)="emitUpdated()"
+                    [value]="question.choiceC"
+                    (change)="onChangeChoiceC($event)"
                 />
             </div>
 
@@ -60,6 +63,7 @@
                 <input
                     type="radio"
                     value="0"
+                    [checked]="question.correctAnswer === 0"
                     class="btn-check"
                     [id]="'btnradio1' + index"
                     [name]="'correctAnswer' + index"
@@ -75,6 +79,7 @@
                 <input
                     type="radio"
                     value="1"
+                    [checked]="question.correctAnswer === 1"
                     class="btn-check"
                     [id]="'btnradio2' + index"
                     [name]="'correctAnswer' + index"
@@ -89,6 +94,7 @@
                 <input
                     type="radio"
                     value="2"
+                    [checked]="question.correctAnswer === 2"
                     [name]="'correctAnswer' + index"
                     class="btn-check"
                     [id]="'btnradio3' + index"

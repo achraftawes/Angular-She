@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { User } from "../models/user.model";
 
 @Injectable({
     providedIn: "root",
@@ -10,10 +9,10 @@ import { User } from "../models/user.model";
 export class UserService {
     private baseUrl = "localhost:8086/SheApp/user/";
     constructor(private http: HttpClient) {}
-    getAllUsers(): Promise<User[]> {
+    getAllUsers(): Observable<any> {
         return this.http
-            .get("/user/retrieve-all-users")
-            .toPromise() as Promise<User[]>;
+            .get(this.baseUrl + "retrieve-all-users", { responseType: "text" })
+            .pipe(catchError(this.handleError));
     }
     getByUserRole(): Observable<any> {
         return this.http
@@ -28,9 +27,8 @@ export class UserService {
     saveUser(user: object): Observable<object> {
         return this.http.post(`${this.baseUrl}` + "registration", user);
     }
-   
-    
-   retrieveUser(id: number): Observable<object> {
+
+    retrieveUser(id: number): Observable<object> {
         return this.http.post(
             `${this.baseUrl}` + "retrieve-user/{user-id}",
             id
@@ -46,7 +44,6 @@ export class UserService {
     private handleError(httpError: HttpErrorResponse) {
         let message: string = "";
         if (httpError.error instanceof ProgressEvent) {
-            console.log("in progrss event");
             message = "Network error";
         }
         // if (httpError.error instanceof ErrorEvent) {
