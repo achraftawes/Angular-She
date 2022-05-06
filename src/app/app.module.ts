@@ -7,7 +7,7 @@ import { TabsModule } from 'ngx-tabset';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { StickyNavModule } from 'ng2-sticky-nav';
 import { LightboxModule } from 'ngx-lightbox';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AccordionModule } from "ngx-accordion";
 import { LightgalleryModule } from 'lightgallery/angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -71,7 +71,12 @@ import { LanguageCategoryComponent } from './components/common/language-category
 import { FreeTrialFormComponent } from './components/common/free-trial-form/free-trial-form.component';
 import { environment } from 'src/environments/environment';
 import { BaseUrlInterceptor } from './config/config.service';
-
+import { AddBlogPageComponent } from './components/pages/add-blog-page/add-blog-page.component';
+import {CommonModule} from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {GestionBlogComponent} from './components/pages/gestion-blog/gestion-blog.component';
+import { EditBlogComponent } from './components/pages/edit-blog/edit-blog.component';
+import { ChatComponent } from './components/pages/chat/chat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,6 +135,11 @@ import { BaseUrlInterceptor } from './config/config.service';
     HomeMainBannerComponent,
     LanguageCategoryComponent,
     FreeTrialFormComponent,
+    BlogPageComponent,
+    AddBlogPageComponent,
+      GestionBlogComponent,
+      EditBlogComponent,
+      ChatComponent
   ],
   imports: [
     HttpClientModule,
@@ -137,6 +147,7 @@ import { BaseUrlInterceptor } from './config/config.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,
+      NgxPaginationModule,
     CountUpModule,
     TabsModule,
     NgxScrollTopModule,
@@ -144,7 +155,10 @@ import { BaseUrlInterceptor } from './config/config.service';
     LightboxModule,
     FormsModule,
     AccordionModule,
-    LightgalleryModule
+    LightgalleryModule,
+      ReactiveFormsModule,
+      CommonModule
+
   ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },

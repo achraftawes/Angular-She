@@ -29,6 +29,10 @@ import { EditAccountPageComponent } from './components/pages/edit-account-page/e
 import { EditBillingAddressPageComponent } from './components/pages/edit-billing-address-page/edit-billing-address-page.component';
 import { EditShippingAddressPageComponent } from './components/pages/edit-shipping-address-page/edit-shipping-address-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import {AddBlogPageComponent} from './components/pages/add-blog-page/add-blog-page.component';
+import {GestionBlogComponent} from './components/pages/gestion-blog/gestion-blog.component';
+import {EditBlogComponent} from './components/pages/edit-blog/edit-blog.component';
+import {ChatComponent} from './components/pages/chat/chat.component';
 
 const routes: Routes = [
     {path: '', component: HomePageComponent},
@@ -52,14 +56,18 @@ const routes: Routes = [
     {path: 'downloads', component: DownloadsPageComponent},
     {path: 'edit-address', component: EditAddressPageComponent},
     {path: 'edit-account', component: EditAccountPageComponent},
+    {path: 'add-blog', component: AddBlogPageComponent},
     {path: 'edit-billing-address', component: EditBillingAddressPageComponent},
     {path: 'edit-shipping-address', component: EditShippingAddressPageComponent},
     {path: 'blog', component: BlogPageComponent},
-    {path: 'single-blog', component: BlogDetailsPageComponent},
+    {path: 'gestion-blog', component: GestionBlogComponent},
+    {path: 'single-blog/:id', component: BlogDetailsPageComponent},
+    {path: 'edit-blog/:id', component: EditBlogComponent},
     {path: 'single-products', component: ProductsDetailsPageComponent},
     {path: 'cart', component: CartPageComponent},
     {path: 'checkout', component: CheckoutPageComponent},
     {path: 'claim', component: ClaimPageComponent},
+    {path: 'chat', component: ChatComponent},
     // Here add new pages component
 
     {path: '**', component: ErrorPageComponent} // This line will remain down from the whole pages component list

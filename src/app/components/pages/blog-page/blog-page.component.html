@@ -7,7 +7,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li>Blog</li>
             </ul>
-            <h2>Blog Right Sidebar</h2>
+
         </div>
     </div>
 </div>
@@ -15,391 +15,118 @@
 <div class="blog-area ptb-100">
     <div class="container">
         <div class="row">
+
             <div class="col-lg-8 col-md-12" >
-                <div class="row" >
-                    <div class="col-lg-6 col-md-6"   >
-                        <div class="single-blog-post mb-30" >
-                            <div class="post-image" *ngFor="let post of posts" >
-                                <a routerLink="/single-blog" class="d-block" >
-                                    <img
-                                        src="{{post.image}}"
-                                        alt="image"
-                                    />
-                                </a>
-                                <div class="tag"  >
-                                    <a routerLink="/blog-style-2"   > </a>
-                
-                                </div>
-                            </div>
-                            <div class="post-content">
-                                <ul class="post-meta">
-                                    <li class="post-author">
-                                        <img
-                                            src="assets/img/user1.jpg"
-                                            class="d-inline-block rounded-circle mr-2"
+                <div class="row">
+
+                        <div class="col-md-6" *ngFor='let post of posts  | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };' (click)="onClick(post)">
+                            <div class="single-blog-post mb-30">
+                                <div class="post-image">
+                                    <a  class="d-block">
+                                        <img *ngIf="post.photo"
+                                            [src]="'data:image/jpg;base64,'+post.photo"
+                                             style="height: 335px"
                                             alt="image"
                                         />
-                                        By:
-                                        <a
-                                            routerLink="/blog-style-2"
-                                            class="d-inline-block"
-                                            >Achraf Smith</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a  routerLink="/blog-style-2" *ngFor="let post of posts" 
-                                         >{{post.createDatePost}}</a
-                                        >
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a 
-                                        routerLink="/single-blog" *ngFor="let post of posts" 
-                                        class="d-inline-block" >{{ post.title }}</a
-                                    >
-                                </h3>
-                                <a
-                                    routerLink="/single-blog"
-                                    class="read-more-btn"
-                                    >Read More
-                                    <i class="bx bx-right-arrow-alt"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single-blog-post mb-30">
-                            <div class="post-image">
-                                <a routerLink="/single-blog" class="d-block">
-                                    <img
-                                        src="assets/img/blog/blog2.jpg"
-                                        alt="image"
-                                    />
-                                </a>
-                                <div class="tag">
-                                    <a routerLink="/blog-style-2">Education</a>
-                                </div>
-                            </div>
-                            <div class="post-content">
-                                <ul class="post-meta">
-                                    <li class="post-author">
-                                        <img
-                                            src="assets/img/user2.jpg"
-                                            class="d-inline-block rounded-circle mr-2"
-                                            alt="image"
+                                        <img *ngIf="!post.photo"
+                                             src="assets/img/blog/blog3.jpg"
+                                             alt="image"
                                         />
-                                        By:
-                                        <a
-                                            routerLink="/blog-style-2"
-                                            class="d-inline-block"
+                                    </a>
+                                    <div class="tag">
+                                        <a >{{post.categoriePost}}</a>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <ul class="post-meta">
+                                        <li class="post-author">
+                                            <img
+                                                src="assets/img/user2.jpg"
+                                                class="d-inline-block rounded-circle mr-2"
+                                                alt="image"
+                                            />
+                                            By:
+                                            <a
+
+                                                class="d-inline-block"
                                             >Lina D'Souja</a
+                                            >
+                                         
+                                        </li>
+                                        <li>
+                                            <a
+                                            >{{post.createDatePost | date:'dd-MM-yyyy, h:mm:ss'}}</a
+                                            >
+                                        </li>
+                                    </ul>
+                                    <h3>
+                                        <a
+                                            routerLink
+                                            class="d-inline-block"
+                                        >{{post.title}}</a
                                         >
-                                    </li>
-                                    <li>
-                                        <a routerLink="/blog-style-2"
-                                            >August 29, 2019</a
-                                        >
-                                    </li>
-                                </ul>
-                                <h3>
+                                    </h3>
                                     <a
-                                        routerLink="/single-blog"
-                                        class="d-inline-block"
-                                        >Most Popular Education Posts Of The
-                                        Week 20-26 Aug</a
-                                    >
-                                </h3>
-                                <a
-                                    routerLink="/single-blog"
-                                    class="read-more-btn"
+
+                                        class="read-more-btn"
                                     >Read More
-                                    <i class="bx bx-right-arrow-alt"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single-blog-post mb-30">
-                            <div class="post-image">
-                                <a routerLink="/single-blog" class="d-block">
-                                    <img
-                                        src="assets/img/blog/blog3.jpg"
-                                        alt="image"
-                                    />
-                                </a>
-                                <div class="tag">
-                                    <a routerLink="/blog-style-2">Management</a>
+                                        <i class="bx bx-right-arrow-alt"></i
+                                        ></a>
                                 </div>
                             </div>
-                            <div class="post-content">
-                                <ul class="post-meta">
-                                    <li class="post-author">
-                                        <img
-                                            src="assets/img/user3.jpg"
-                                            class="d-inline-block rounded-circle mr-2"
-                                            alt="image"
-                                        />
-                                        By:
-                                        <a
-                                            routerLink="/blog-style-2"
-                                            class="d-inline-block"
-                                            >David Malan</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a routerLink="/blog-style-2"
-                                            >August 28, 2019</a
-                                        >
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a
-                                        routerLink="/single-blog"
-                                        class="d-inline-block"
-                                        >How to enhance education quality
-                                        management system</a
-                                    >
-                                </h3>
-                                <a
-                                    routerLink="/single-blog"
-                                    class="read-more-btn"
-                                    >Read More
-                                    <i class="bx bx-right-arrow-alt"></i
-                                ></a>
-                            </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="posts.length > 0">
                         <div class="pagination-area text-center">
-                            <span
-                                class="page-numbers current"
-                                aria-current="page"
-                                >1</span
-                            >
-                            <a routerLink="/blog-style-2" class="page-numbers"
-                                >2</a
-                            >
-                            <a routerLink="/blog-style-2" class="page-numbers"
-                                >3</a
-                            >
-                            <a routerLink="/blog-style-2" class="page-numbers"
-                                >4</a
-                            >
-                            <a routerLink="/blog-style-2" class="page-numbers"
-                                >5</a
-                            >
-                            <a
-                                routerLink="/blog-style-2"
-                                class="next page-numbers"
-                                ><i class="bx bx-chevron-right"></i
-                            ></a>
+                            <div class="d-flex justify-content-center">
+                                <pagination-controls
+                                    previousLabel="Prev"
+                                    nextLabel="Next"
+                                    (pageChange)="onTableDataChange($event)"
+                                >
+                                </pagination-controls>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
             <div class="col-lg-4 col-md-12">
                 <aside class="widget-area">
                     <div class="widget widget_search">
-                        <form class="search-form">
+                        <form class="search-form" #n="ngForm" (ngSubmit)="onSubmit(n.value)">
                             <label>
                                 <span class="screen-reader-text"
-                                    >Search for:</span
+                                >Search for:</span
                                 >
-                                <input
+                                <input ngModel
                                     type="search"
                                     class="search-field"
+                                    name="keyWord"
                                     placeholder="Search..."
                                 />
                             </label>
-                            <button type="submit">
+                            <button type="submit" >
                                 <i class="bx bx-search-alt"></i>
                             </button>
                         </form>
                     </div>
-                    <div class="widget widget_ednuv_posts_thumb">
-                        <h3 class="widget-title">Popular Posts</h3>
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb">
-                                <span
-                                    class="fullimage cover bg1"
-                                    role="img"
-                                ></span>
-                            </a>
-                            <div class="info">
-                                <time datetime="2019-06-30">June 10, 2019</time>
-                                <h4 class="title usmall">
-                                    <a routerLink="/single-blog"
-                                        >Making Peace With The Feast Or Famine
-                                        Of Freelancing</a
-                                    >
-                                </h4>
-                            </div>
-                            <div class="clear"></div>
-                        </article>
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb">
-                                <span
-                                    class="fullimage cover bg2"
-                                    role="img"
-                                ></span>
-                            </a>
-                            <div class="info">
-                                <time datetime="2019-06-30">June 21, 2019</time>
-                                <h4 class="title usmall">
-                                    <a routerLink="/single-blog"
-                                        >I Used The Web For A Day On A 50 MB
-                                        Budget</a
-                                    >
-                                </h4>
-                            </div>
-                            <div class="clear"></div>
-                        </article>
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb">
-                                <span
-                                    class="fullimage cover bg3"
-                                    role="img"
-                                ></span>
-                            </a>
-                            <div class="info">
-                                <time datetime="2019-06-30">June 30, 2019</time>
-                                <h4 class="title usmall">
-                                    <a routerLink="/single-blog"
-                                        >How To Create A Responsive Popup
-                                        Gallery?</a
-                                    >
-                                </h4>
-                            </div>
-                            <div class="clear"></div>
-                        </article>
-                    </div>
+
                     <div class="widget widget_categories">
                         <h3 class="widget-title">Categories</h3>
-                        <ul>
+                        <ul *ngFor="let cat of categories " (click)="onChangeCategories(cat)">
                             <li>
-                                <a routerLink="/blog-style-2"
-                                    >Design
-                                    <span class="post-count">(03)</span></a
-                                >
-                            </li>
-                            <li>
-                                <a routerLink="/blog-style-2"
-                                    >Lifestyle
-                                    <span class="post-count">(05)</span></a
-                                >
-                            </li>
-                            <li>
-                                <a routerLink="/blog-style-2"
-                                    >Script
-                                    <span class="post-count">(10)</span></a
-                                >
-                            </li>
-                            <li>
-                                <a routerLink="/blog-style-2"
-                                    >Device
-                                    <span class="post-count">(08)</span></a
-                                >
-                            </li>
-                            <li>
-                                <a routerLink="/blog-style-2"
-                                    >Tips
-                                    <span class="post-count">(01)</span></a
+                                <a
+                                >{{cat.name}}
+                                    <span class="post-count">{{cat.nbre}}</span></a
                                 >
                             </li>
                         </ul>
-                    </div>
-                    <div class="widget widget_tag_cloud">
-                        <h3 class="widget-title">Ednuv Tags</h3>
-                        <div class="tagcloud">
-                            <a routerLink="/blog-style-2"
-                                >IT <span class="tag-link-count"> (3)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Raque
-                                <span class="tag-link-count"> (3)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Games
-                                <span class="tag-link-count"> (2)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Fashion
-                                <span class="tag-link-count"> (2)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Travel
-                                <span class="tag-link-count"> (1)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Smart
-                                <span class="tag-link-count"> (1)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Marketing
-                                <span class="tag-link-count"> (1)</span></a
-                            >
-                            <a routerLink="/blog-style-2"
-                                >Tips
-                                <span class="tag-link-count"> (2)</span></a
-                            >
-                        </div>
-                    </div>
-                    <div class="widget widget_instagram">
-                        <h3 class="widget-title">Instagram</h3>
-                        <ul>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog1.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog2.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog3.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog4.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog5.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank" class="d-block"
-                                    ><img
-                                        src="assets/img/blog/blog6.jpg"
-                                        alt="image"
-                                /></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="widget widget_contact">
-                        <div class="text">
-                            <div class="icon">
-                                <i class="bx bx-phone-call"></i>
-                            </div>
-                            <span>Emergency</span>
-                            <a href="tel:+098798768753">+0987-9876-8753</a>
-                        </div>
                     </div>
                 </aside>
             </div>

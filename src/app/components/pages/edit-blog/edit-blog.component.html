@@ -1,0 +1,58 @@
+<app-header-style></app-header-style>
+
+<div class="page-title-area item-bg4">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Blog</li>
+                
+            </ul>
+            <h2>Edit Blog</h2>
+        </div>
+    </div>
+</div>
+<div class="my-dashboard-area ptb-100">
+<div class="container" *ngIf="currentBlog">
+    <div class="col-md-12 col-sm-12 col-xs-12" >
+        <div class="card">
+            <div class="card-header">Edit Blog</div>
+            <div class="card-body" *ngIf="categoriePost">
+                <form #f="ngForm" (ngSubmit)="onUpdateBlog(f.value)">
+                    <div class="form-group">
+                        <label class="control-label">Title</label>
+                        <input class="form-control" type="text" name="title" [ngModel]="currentBlog.title">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description</label>
+                        <input class="form-control" type="text" name="descriptionPost" [ngModel]="currentBlog.descriptionPost">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date de création</label>
+                        <input class="form-control" type="text" name="createDatePost" [ngModel]="currentBlog.createDatePost" readonly>
+                    </div>
+                    <div class="form-group" *ngIf="categoriePost">
+                        <label class="control-label">Catégorie</label>
+
+                        <select id="categorie"  name="categoriePost" class="form-control" [(ngModel)]="currentBlog.categoriePost" (change)="changeCategorie($event.target.value)">
+                            <option  *ngFor="let c of categoriePost" [value]="c" >
+                                {{c}}
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="control-label">Photo</label>
+                        <input style="margin-left: 10px" type="file" (change)="onSelectedFile($event)">
+                    </div>
+                    <br>
+                    
+                    <button class="btn btn-danger" type="button"(click)="goBack()">Back</button>
+                    <div class="btn-group">
+                        <button style="margin-left: 10px" class="btn btn-success" type="submit">Update</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

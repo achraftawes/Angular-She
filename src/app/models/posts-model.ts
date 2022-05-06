@@ -6,5 +6,5 @@ export class Posts {
     descriptionPost : string;
 	createDatePost : Date;
 	categoriePost : string;
-
+    
 }

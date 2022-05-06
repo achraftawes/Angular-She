@@ -11,7 +11,7 @@
                 [class.active]="classApplied"
             >
                 <a class="navbar-brand" routerLink="/"
-                    ><img src="assets/img/black-logo.png" alt="logo"
+                    ><img src="assets/img/sheforshe1.jpg" alt="logo"
                 /></a>
                 <button
                     class="navbar-toggler"
@@ -133,7 +133,7 @@
                                         >Courses Details</a
                                     >
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -148,16 +148,35 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a
-                                routerLink="/blog"
-                                class="nav-link"
-                                routerLinkActive="active"
-                                [routerLinkActiveOptions]="{
-                                    exact: true
-                                }"
-                                class="nav-link"
-                                >Blog</a
-                            >
+                            <a href="javascript:void(0)" class="nav-link"  routerLink="/blog"
+                            >Blog <i class="bx bx-chevron-down"></i
+                            ></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/add-blog"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                    >Ajouter Blog
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        routerLink="/gestion-blog"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                    >Gestion Blog
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a
@@ -168,7 +187,7 @@
                                 >Claim</a
                             >
                         </li>
-
+                        
                         <li class="nav-item">
                             <a
                                 routerLink="/about"

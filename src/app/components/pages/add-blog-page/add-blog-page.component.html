@@ -1,0 +1,57 @@
+<app-header-style></app-header-style>
+
+<div class="page-title-area item-bg4">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Blog</li>
+            </ul>
+            <h2>Add Blog</h2>
+        </div>
+    </div>
+</div>
+
+<div class="blog-details-area ptb-100">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Add Blog</div>
+            <br>
+            <div class="card-body">
+                <form #n="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(n.value)">
+                    <div class="form-group">
+                        <label  class="label">Title</label>
+                        <input type="email" class="form-control"  placeholder="Title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" >
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label >Category</label>
+                        <select class="form-control" formControlName="categoriePost" [ngClass]="{ 'is-invalid': submitted && f.categoriePost.errors }" >
+                            <option *ngFor="let cat of categories" [value]="cat">
+                                {{cat}}
+                            </option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label >Description</label>
+                        <textarea class="form-control"  rows="3" formControlName="descriptionPost" [ngClass]="{ 'is-invalid': submitted && f.descriptionPost.errors }" ></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label ></label>
+                        <input class=""  type="file" (change)="onSelectedFile($event)" />
+                    </div>
+
+                    <br>
+                    <button class="btn btn-secondary" (click)="goBack()" type="button" >Back</button>
+                    <button style="margin-left: 10px" class="btn btn-primary" type="submit" >Add</button>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+        </div>
+

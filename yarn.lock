@@ -160,7 +160,7 @@
     "symbol-observable" "4.0.0"
     "uuid" "8.3.2"
 
-"@angular/common@ ^13.0.0-rc.0 || ^13.0.0", "@angular/common@>=2.0.0", "@angular/common@>=5 <12", "@angular/common@>=7.0.0", "@angular/common@~13.2.5", "@angular/common@13.2.7":
+"@angular/common@ ^13.0.0-rc.0 || ^13.0.0", "@angular/common@>=2.0.0", "@angular/common@>=5 <12", "@angular/common@>=5.0.0", "@angular/common@>=7.0.0", "@angular/common@~13.2.5", "@angular/common@13.2.7":
   "integrity" "sha512-gSkv9aMz5q2ynIqSwgp5HEVVwlmpMYGVZFNZnEnezGY96Hza0eXlb/AYdqO7S3VQVvx+FXpvXP/eq/SsCw7rFA=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-13.2.7.tgz"
   "version" "13.2.7"
@@ -195,7 +195,7 @@
   "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-9.0.0.tgz"
   "version" "9.0.0"
 
-"@angular/core@^13.0.0-rc.0 || ^13.0.0", "@angular/core@^2.0.0", "@angular/core@>=2.0.0", "@angular/core@>=5 <12", "@angular/core@>=7.0.0", "@angular/core@~13.2.5", "@angular/core@13.2.7":
+"@angular/core@^13.0.0-rc.0 || ^13.0.0", "@angular/core@^2.0.0", "@angular/core@>=2.0.0", "@angular/core@>=5 <12", "@angular/core@>=5.0.0", "@angular/core@>=7.0.0", "@angular/core@~13.2.5", "@angular/core@13.2.7":
   "integrity" "sha512-6J6C2ymIy+cZudock25BLEZFckhqFfXOSZw5YBIoAJuntV4hckLNfRTn/dxn5qmWF/Vw60NKdhV367YYejz6Gg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-13.2.7.tgz"
   "version" "13.2.7"
@@ -4918,6 +4918,11 @@
   dependencies:
     "tslib" "^2.3.0"
 
+"ngx-pagination@^5.1.1":
+  "integrity" "sha512-KxHES+Dn6pbetytO9ng2GAdclmo4UcwzFmQyVPWh2xRPbAlv5/ezL2xnDVBFMqCoJQaZagvdQ+ZZFbqGWqAvCQ=="
+  "resolved" "https://registry.npmjs.org/ngx-pagination/-/ngx-pagination-5.1.1.tgz"
+  "version" "5.1.1"
+
 "ngx-scrolltop@^2.3.1":
   "integrity" "sha512-wJQv3M9i09Rxxeq2ESjZo1NAcYWjQXqVnKIYMOA1D+CfPg68/uLGl7z+d6IdpweCPNsDFVciYA/fxA6Y5liX4g=="
   "resolved" "https://registry.npmjs.org/ngx-scrolltop/-/ngx-scrolltop-2.4.0.tgz"
@@ -5718,6 +5723,13 @@
   "integrity" "sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A=="
   "resolved" "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz"
   "version" "2.1.1"
+
+"pusher-js@^7.1.0-beta":
+  "integrity" "sha512-vs9R5Guy2VW1O3nI0OTa9NQWHkfbEvmkyWDOC469WubhVFwQ5Pa38OgRQetQzA5Ege2SF3iErZBGzY/xXNiKyw=="
+  "resolved" "https://registry.npmjs.org/pusher-js/-/pusher-js-7.1.0-beta.tgz"
+  "version" "7.1.0-beta"
+  dependencies:
+    "tweetnacl" "^1.0.3"
 
 "q@^1.4.1", "q@1.4.1":
   "integrity" "sha1-VXBbzZPF82c1MMLCy8DCs63cKG4="
@@ -6852,6 +6864,11 @@
   "integrity" "sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q="
   "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.5.tgz"
   "version" "0.14.5"
+
+"tweetnacl@^1.0.3":
+  "integrity" "sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw=="
+  "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz"
+  "version" "1.0.3"
 
 "type-fest@^0.21.3":
   "integrity" "sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w=="
