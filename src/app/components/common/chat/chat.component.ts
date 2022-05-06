@@ -39,6 +39,13 @@ export class ChatComponent implements OnInit {
         // this.initializeSocketListeners();
     }
 
+    async handleCloseChat(event) {
+        if (!this.isFormer) return;
+        if (!confirm("Do you want to resolve this claim?")) return;
+        await this.claimService.resolveClaim(event.id);
+        alert("Claim resolved!");
+    }
+
     ngOnInit(): void {
         this.claimTopic$ = this.storageService.storageChange$.pipe(
             filter(({ key }) => key === "claimTopic"),

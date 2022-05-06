@@ -6,4 +6,5 @@
     [localization]="localization"
     [hideFriendsList]="!isFormer"
     (onParticipantChatOpened)="handleAutoOpened($event)"
+    (onParticipantChatClosed)="handleCloseChat($event)"
 ></ng-chat>

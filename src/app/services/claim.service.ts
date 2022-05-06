@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IAttachment } from "../models/attachment.model";
 import { IClaim } from "../models/claim.model";
 
 @Injectable({ providedIn: "root" })
@@ -18,5 +17,15 @@ export class ClaimService {
         return this.http.get(
             `/claim/retrieve-claim/${claimId}`
         ) as Observable<IClaim>;
+    }
+
+    public resolveClaim(claimId: string) {
+        return this.http
+            .put(
+                `/claim/resolve-claim/${claimId}`,
+                {},
+                { responseType: "text" }
+            )
+            .toPromise();
     }
 }
