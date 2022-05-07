@@ -1,0 +1,25 @@
+button {
+    transition: var(--transition);
+    display: block;
+    width: 15%;
+    padding: 13px 25px 12px 25px;
+    position: relative;
+    background-color: var(--mainColor);
+    color: var(--whiteColor);
+    box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
+    border: {
+        width: 2px;
+        style: solid;
+        color: var(--mainColor);
+        radius: 5px;
+    };
+    font: {
+        size: 14.5px;
+        weight: 700;
+    };
+    &:hover, &:focus {
+        background-color: var(--optionalColor);
+        color: var(--whiteColor);
+        border-color: var(--optionalColor);
+    }
+}

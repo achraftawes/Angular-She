@@ -1,0 +1,41 @@
+<ngb-accordion
+    #acc="ngbAccordion"
+    [activeIds]="'ngb-panel-lesson-' + index"
+    [destroyOnHide]="false"
+>
+    <ngb-panel
+        [title]="'Lesson ' + (index + 1)"
+        [id]="'ngb-panel-lesson-' + index"
+    >
+        <ng-template ngbPanelContent>
+            <div class="form-group mb-3">
+                <label for="formGroupLessonInput">Lesson title</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Lesson title..."
+                    name="title"
+                    [value]="lesson.title"
+                    (change)="onTitleChange($event)"
+                />
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput"
+                    >Lesson media (image/video)</label
+                >
+                <input
+                    type="file"
+                    class="form-control"
+                    (change)="onFileSelected($event)"
+                />
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupExampleInput">Lesson description</label>
+                <app-add-description
+                    [value]="lesson.content"
+                    (contentChange)="onLessonDescriptionChange($event)"
+                ></app-add-description>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

@@ -73,7 +73,7 @@
                         </li>
                         <li class="nav-item">
                             <a
-                                routerLink="/gallery"
+                                routerLink="/products"
                                 class="nav-link"
                                 routerLinkActive="active"
                                 [routerLinkActiveOptions]="{
@@ -110,6 +110,18 @@
                                         >Courses Category
                                     </a>
                                 </li>
+                                <li class="nav-item" *ngIf="isFormer">
+                                    <a
+                                        routerLink="/create-course"
+                                        class="nav-link"
+                                        routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{
+                                            exact: true
+                                        }"
+                                        class="nav-link"
+                                        >Create course
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a
                                         routerLink="/courses-grid"
@@ -136,7 +148,7 @@
                                 
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" *ngIf="isFormer">
                             <a
                                 routerLink="/my-dashboard"
                                 class="nav-link"

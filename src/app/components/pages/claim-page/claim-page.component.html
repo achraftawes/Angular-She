@@ -1,6 +1,6 @@
 <app-header-style></app-header-style>
 
-<div class="page-title-area item-bg2">
+<div class="page-title-area claim-bg">
     <div class="container">
         <div class="page-title-content">
             <ul>
@@ -21,8 +21,11 @@
                         <i class="bx bx-envelope"></i>
                     </div>
                     <h3>Email Here</h3>
-                    <p><a href="mailto:hello@ednuv.com">hello@ednuv.com</a></p>
-                    <p><a href="mailto:ednuv@hello.com">ednuv@hello.com</a></p>
+                    <p>
+                        <a href="mailto:ameni.hamdi@esprit.tn"
+                            >ameni.hamdi@esprit.tn</a
+                        >
+                    </p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -33,10 +36,10 @@
                     <h3>Location Here</h3>
                     <p>
                         <a
-                            href="https://goo.gl/maps/Mii9keyeqXeNH4347"
+                            href="https://goo.gl/maps/jweDjd9HAW6XydB68"
                             target="_blank"
-                            >2750 Quadra Street Victoria Road, New York, United
-                            States</a
+                            >Avenue Fethi Zouhir, Cebalat Ben Ammar 2083,
+                            Tunisia</a
                         >
                     </p>
                 </div>
@@ -62,106 +65,11 @@
         <div class="section-title">
             <span class="sub-title">Contact Us</span>
             <h2>Drop us Message for any Query</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <p>We will respond to your queries as soon as possible!</p>
         </div>
         <div class="contact-form">
             <form #contactForm="ngForm" (ngSubmit)="submit(contactForm.value)">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <input
-                                required
-                                minlength="3"
-                                maxlength="50"
-                                ngModel
-                                name="name"
-                                type="text"
-                                #name="ngModel"
-                                class="form-control"
-                                id="name"
-                                placeholder="Your name"
-                            />
-                            <div
-                                class="alert alert-danger"
-                                *ngIf="name.touched && !name.valid"
-                            >
-                                <div *ngIf="name.errors.required">
-                                    Name is required.
-                                </div>
-                                <div *ngIf="name.errors.minlength">
-                                    Name is minimum
-                                    {{ name.errors.minlength.requiredLength }}
-                                    character.
-                                </div>
-                                <div *ngIf="name.errors.maxlength">
-                                    Name is maximum 50 character.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <input
-                                required
-                                ngModel
-                                name="email"
-                                type="text"
-                                #email="ngModel"
-                                class="form-control"
-                                id="email"
-                                placeholder="Your email address"
-                            />
-                            <div
-                                class="alert alert-danger"
-                                *ngIf="email.touched && !email.valid"
-                            >
-                                Email Address is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <input
-                                required
-                                ngModel
-                                name="number"
-                                type="text"
-                                #number="ngModel"
-                                class="form-control"
-                                id="number"
-                                placeholder="Your phone number"
-                            />
-                            <div
-                                class="alert alert-danger"
-                                *ngIf="number.touched && !number.valid"
-                            >
-                                Phone number is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <input
-                                required
-                                ngModel
-                                name="subject"
-                                type="text"
-                                #subject="ngModel"
-                                class="form-control"
-                                id="subject"
-                                placeholder="Your subject"
-                            />
-                            <div
-                                class="alert alert-danger"
-                                *ngIf="subject.touched && !subject.valid"
-                            >
-                                Phone subject is required.
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-12 col-md-12">
                         <div class="form-group">
                             <textarea
@@ -177,7 +85,7 @@
                             ></textarea>
                             <div
                                 class="alert alert-danger"
-                                *ngIf="message.touched && !name.valid"
+                                *ngIf="message.touched && !message.value"
                             >
                                 Message is required.
                             </div>
@@ -205,6 +113,12 @@
 
 <div id="map">
     <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d359536.14502592356!2d-76.08043413946686!3d45.25029749557496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce04ff4fe494ef%3A0x26bb54f60c29f6e!2sParliament%20Hill!5e0!3m2!1sen!2sbd!4v1593691677634!5m2!1sen!2sbd"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2599.350568459086!2d10.189185678717964!3d36.89761797223428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb7454c6ed51%3A0x683b3ab5565cd357!2sESPRIT!5e0!3m2!1sen!2sde!4v1650674702956!5m2!1sen!2sde"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
 </div>
