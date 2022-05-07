@@ -31,4 +31,20 @@ export class TrainingService {
             })
             .toPromise() as Promise<string>;
     }
+
+    isEnrolledToTraining(id: number): Promise<boolean> {
+        return this.http
+            .get(`/training/enrolled-to-training/${id}`)
+            .toPromise() as Promise<boolean>;
+    }
+
+    enrollToTraining(id: number): Promise<string> {
+        return this.http
+            .put(
+                `/training/enroll-to-training/${id}`,
+                {},
+                { responseType: "text" }
+            )
+            .toPromise() as Promise<string>;
+    }
 }

@@ -26,6 +26,7 @@ import {
     rxStompServiceFactory,
 } from "@stomp/ng2-stompjs";
 import { NgxsModule } from "@ngxs/store";
+import { NgChartsModule } from "ng2-charts";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { environment } from "src/environments/environment";
@@ -100,6 +101,8 @@ import { myRxStompConfig } from "./config/stomp.config";
 import { EditTrainingComponent } from "./components/pages/edit-training/edit-training.component";
 import { EditOrAddTrainingComponent } from "./components/common/edit-or-add-training/edit-or-add-training.component";
 import { States } from "./store";
+import { TrainingStatsComponent } from "./components/pages/training-stats/training-stats.component";
+import { PieChartComponent } from "./components/common/pie-chart/pie-chart.component";
 
 @NgModule({
     declarations: [
@@ -169,6 +172,8 @@ import { States } from "./store";
         ChatComponent,
         EditTrainingComponent,
         EditOrAddTrainingComponent,
+        TrainingStatsComponent,
+        PieChartComponent,
     ],
     imports: [
         NgPipesModule,
@@ -205,6 +210,7 @@ import { States } from "./store";
         NgxsModule.forRoot(States, {
             developmentMode: !environment.production,
         }),
+        NgChartsModule,
     ],
     providers: [
         {

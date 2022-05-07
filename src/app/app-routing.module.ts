@@ -32,6 +32,7 @@ import { HomePageComponent } from "./components/pages/home-page/home-page.compon
 import { CourseCreationPageComponent } from "./components/pages/course-creation/courses-creation-page.component";
 import { CertificatePageComponent } from "./components/pages/certificate-page/certificate-page.component";
 import { EditTrainingComponent } from "./components/pages/edit-training/edit-training.component";
+import { TrainingStatsComponent } from "./components/pages/training-stats/training-stats.component";
 
 const routes: Routes = [
     { path: "", component: HomePageComponent, pathMatch: "full" },
@@ -57,6 +58,10 @@ const routes: Routes = [
     {
         path: "edit-course/:id-training",
         component: EditTrainingComponent,
+    },
+    {
+        path: "course-stats/:id-training",
+        component: TrainingStatsComponent,
     },
     { path: "create-course", component: CourseCreationPageComponent },
     {

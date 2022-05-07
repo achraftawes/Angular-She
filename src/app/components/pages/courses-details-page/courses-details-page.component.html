@@ -61,7 +61,7 @@
                             >
                         </div>
                         <div class="price">Free</div>
-                        <a routerLink="/single-courses" class="default-btn"
+                        <a (click)="enrollToTraining()" class="default-btn"
                             ><i class="bx bx-paper-plane icon-arrow before"></i
                             ><span class="label">Enroll</span
                             ><i class="bx bx-paper-plane icon-arrow after"></i
@@ -513,7 +513,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="courses-sidebar-syllabus">
+                <div
+                    class="courses-sidebar-syllabus"
+                    *ngIf="isEnrolledToTraining"
+                >
                     <h3>Course Syllabus</h3>
                     <div
                         *ngFor="
@@ -565,13 +568,13 @@
                         >
                     </div>
                 </div>
-                <div class="courses-purchase-info">
+                <div
+                    class="courses-purchase-info"
+                    *ngIf="!isEnrolledToTraining"
+                >
                     <h4>Interested in this course?</h4>
-                    <a routerLink="/single-courses" class="d-inline-block"
+                    <a (click)="enrollToTraining()" class="d-inline-block"
                         >Enroll now</a
-                    >
-                    <a routerLink="/single-courses" class="d-inline-block"
-                        >Request Information</a
                     >
                 </div>
             </div>

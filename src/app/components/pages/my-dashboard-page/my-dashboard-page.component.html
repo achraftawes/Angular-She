@@ -113,22 +113,22 @@
                 </li>
             </ul>
         </div>
-        <div class="myDashboard-content" *ngFor="let training of trainings">
+        <div class="myDashboard-content">
             <p>
                 Hello
                 <strong
                     >{{
-                        training.former.firstName +
+                        trainings[0].former.firstName +
                             " " +
-                            training.former.lastName
+                            trainings[0].former.lastName
                     }}
                 </strong>
                 (not
                 <strong
                     >{{
-                        training.former.firstName +
+                        trainings[0].former.firstName +
                             " " +
-                            training.former.lastName
+                            trainings[0].former.lastName
                     }} </strong
                 >? <a routerLink="/login">Log out</a>)
             </p>
@@ -187,7 +187,9 @@
                                     >Delete</a
                                 >
                                 <a
-                                    routerLink="/single-courses"
+                                    [routerLink]="
+                                        '/course-stats/' + training.idTraining
+                                    "
                                     class="view-button"
                                     >Statistics</a
                                 >

@@ -9,6 +9,9 @@ import { TrainingActions } from "src/app/store/training/training.actions";
 import { ITraining } from "../../../models/training.model";
 import { ILesson } from "../../../models/lesson.model";
 import { IQuiz } from "src/app/models/quiz.model";
+import { RoleName } from "src/app/models/role-name";
+import { TrainingService } from "src/app/services/training.service";
+import { IStats } from "src/app/models/stats.model";
 
 @Component({
     selector: "app-courses-details-page",
@@ -26,12 +29,15 @@ export class CoursesDetailsPageComponent implements OnInit {
     @Select(TrainingState.answerSubmitted)
     answerSubmitted$: Observable<boolean>;
 
-    public userAnswer = {};
+    public isEnrolledToTraining = false;
+    public idTraining: number;
+   
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private store: Store
+        private store: Store,
+        private trainingService: TrainingService
     ) {}
 
     async ngOnInit(): Promise<void> {
@@ -44,6 +50,27 @@ export class CoursesDetailsPageComponent implements OnInit {
             .toPromise();
         if (!idTraining) this.router.navigate(["courses-grid"]);
         this.store.dispatch(new TrainingActions.SelectTraining(+idTraining));
+        this.idTraining = idTraining;
+        await this.isEnrolled();
+    }
+
+    async isEnrolled() {
+        const rolesRaw = sessionStorage.getItem("roles");
+        if (!rolesRaw) return;
+        const parsedRoles = JSON.parse(rolesRaw) as RoleName[];
+        const isFormer = parsedRoles.includes(RoleName.FORMER);
+        if (isFormer) {
+            // Formers does not need to enroll to training
+            this.isEnrolledToTraining = true;
+            return;
+        }
+        this.isEnrolledToTraining =
+            await this.trainingService.isEnrolledToTraining(this.idTraining);
+    }
+
+    async enrollToTraining() {
+        await this.trainingService.enrollToTraining(this.idTraining);
+        await this.isEnrolled();
     }
 
     onSelectQuiz(sectionId: number) {

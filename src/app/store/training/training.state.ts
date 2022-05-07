@@ -100,12 +100,10 @@ export class TrainingState {
         { trainingId }
     ) {
         let { trainingsList } = getState();
-        console.log("inside med", trainingId);
 
         if (!trainingsList.length) {
             dispatch(new GetAll());
             ({ trainingsList } = getState());
-            console.log("inside med", trainingId);
         }
         patchState({ selectedTraining: trainingId });
     }
